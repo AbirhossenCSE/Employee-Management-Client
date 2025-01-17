@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../providers/AuthProviders';
+import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
 
 const Login = () => {
@@ -12,9 +13,6 @@ const Login = () => {
 
     const from = location.state?.from?.pathname || '/';
 
-    // useEffect(() => {
-    //     loadCaptchaEnginge(6);
-    // }, [])
 
     const handleLogin = event => {
         event.preventDefault();
@@ -101,7 +99,7 @@ const Login = () => {
                         </form>
                         <p className='mx-auto p-2'><small>New Hare? <Link to='/signup'>Create a new account</Link> </small></p>
 
-                        {/* <SocialLogin></SocialLogin> */}
+                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>

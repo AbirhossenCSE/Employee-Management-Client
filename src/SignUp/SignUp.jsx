@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../providers/AuthProviders';
 import useAxiosPublic from '../hooks/useAxiosPublic';
+import SocialLogin from '../pages/Shared/SocialLogin/SocialLogin';
 
 
 
@@ -102,8 +103,8 @@ const SignUp = () => {
                             </div>
                         </form>
                         <p className='mx-auto p-2'><small>Already have an account? <Link to='/login'>Login</Link> </small></p>
-                        
-                        {/* <SocialLogin></SocialLogin> */}
+
+                        <SocialLogin></SocialLogin>
                     </div>
                 </div>
             </div>
