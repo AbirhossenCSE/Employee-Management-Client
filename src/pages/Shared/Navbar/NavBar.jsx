@@ -16,8 +16,8 @@ const NavBar = () => {
     };
 
     const links = <>
-        <li><a>Home</a></li>
-        <li><a>Contact us</a></li>
+        <li><Link to='/'>Home</Link></li>
+        <li><Link to='/contactUs'>Contact Us</Link></li>
     </>
     return (
         <div>
