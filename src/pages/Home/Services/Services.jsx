@@ -1,13 +1,14 @@
 import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import useAxiosPublic from '../../../hooks/useAxiosPublic';
+import SectionTitle from '../../../assets/components/SectionTitle/SectionTitle';
 
 
 const Services = () => {
     const axiosPublic = useAxiosPublic();
 
     const { data: services = [], isLoading, isError } = useQuery({
-        queryKey: ['services'], // Corrected to object format
+        queryKey: ['services'],
         queryFn: async () => {
             const response = await axiosPublic.get('/services');
             return response.data;
@@ -25,7 +26,7 @@ const Services = () => {
     return (
         <div className="bg-gray-50 py-12">
             <div className="container mx-auto px-6">
-                <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">Our Services</h2>
+                <SectionTitle subHeading="What we provide" heading='Our Services'></SectionTitle>
 
                 <div className="grid gap-8 lg:grid-cols-2">
                     {services.map((service) => (
@@ -40,10 +41,6 @@ const Services = () => {
                             <p className="text-gray-600">{service.description}</p>
                         </div>
                     ))}
-                </div>
-
-                <div className="flex justify-center mt-10">
-                    <button className="btn btn-primary px-6 py-3 rounded-md">Learn More</button>
                 </div>
             </div>
         </div>
