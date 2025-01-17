@@ -1,6 +1,27 @@
 import React from 'react';
+import { useQuery } from '@tanstack/react-query';
+import useAxiosPublic from '../../../hooks/useAxiosPublic';
+
 
 const Services = () => {
+    const axiosPublic = useAxiosPublic();
+
+    const { data: services = [], isLoading, isError } = useQuery({
+        queryKey: ['services'], // Corrected to object format
+        queryFn: async () => {
+            const response = await axiosPublic.get('/services');
+            return response.data;
+        }
+    });
+
+    if (isLoading) {
+        return <div className="text-center text-gray-500">Loading services...</div>;
+    }
+
+    if (isError) {
+        return <div className="text-center text-red-500">Failed to load services. Please try again later.</div>;
+    }
+
     return (
         <div className="bg-gray-50 py-12">
             <div className="container mx-auto px-6">
