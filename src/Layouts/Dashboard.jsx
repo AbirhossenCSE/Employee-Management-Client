@@ -2,16 +2,14 @@ import React from 'react';
 import { FaBook, FaCalendar, FaEnvelope, FaHome, FaList, FaShoppingCart, FaUsers, FaUtensils } from 'react-icons/fa';
 import { MdBorderColor, MdMenu, MdOutlineRateReview } from 'react-icons/md';
 import { NavLink, Outlet } from 'react-router-dom';
-// import useCart from '../hooks/useCart';
-// import useAdmin from '../hooks/useAdmin';
 import useAuth from '../hooks/useAuth';
+import useAdmin from '../hooks/useAdmin';
 
 
 const Dashboard = () => {
-    // const [cart] = useCart();
 
     // TODO: get isAdmin value from the daatabase
-    // const [isAdmin] = useAdmin();
+    const [isAdmin] = useAdmin();
     const {user} = useAuth();
 
 
@@ -21,7 +19,7 @@ const Dashboard = () => {
             <div className="w-64 min-h-screen bg-orange-400">
                 <ul className='menu p-4'>
                     {
-                        user ? <>
+                        isAdmin ? <>
                             <li><NavLink to='/dashboard/adminHome'> <FaHome></FaHome> Admin Home</NavLink></li>
 
 
