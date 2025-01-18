@@ -7,6 +7,8 @@ import Login from "../pages/Login/Login";
 import SignUp from "../SignUp/SignUp";
 import PrivateRoute from "./PrivateRoute";
 import ContactUs from "../pages/ContactUs/ContactUs";
+import Dashboard from "../Layouts/Dashboard";
+import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 
 export const router = createBrowserRouter([
     {
@@ -29,6 +31,16 @@ export const router = createBrowserRouter([
                 path: 'signup',
                 element: <SignUp></SignUp>
               },
+        ]
+    },
+    {
+        path: 'dashboard',
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+        children: [
+            {
+                path: 'all-employee-list',
+                element: <AllUsers></AllUsers>
+            },
         ]
     },
 ]);
