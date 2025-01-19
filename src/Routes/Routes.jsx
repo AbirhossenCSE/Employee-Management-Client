@@ -10,6 +10,7 @@ import ContactUs from "../pages/ContactUs/ContactUs";
 import Dashboard from "../Layouts/Dashboard";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import WorkSheet from "../pages/Dashboard/Employee/WorkSheet";
+import EmployeeHr from "../pages/Dashboard/HR/EmployeeHr";
 
 export const router = createBrowserRouter([
     {
@@ -42,6 +43,11 @@ export const router = createBrowserRouter([
             {
                 path: 'all-employee-list',
                 element: <AllUsers></AllUsers>
+            },
+            // Hr
+            {
+                path: 'employee-list',
+                element: <EmployeeHr></EmployeeHr>
             },
             // employee
             {

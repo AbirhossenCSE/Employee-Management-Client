@@ -37,7 +37,7 @@ const Dashboard = () => {
                                 </NavLink>
                             </li>
                             <li>
-                                <NavLink to="/dashboard/all-employee">
+                                <NavLink to="/dashboard/employee-list">
                                     <FaUsers /> All Employees
                                 </NavLink>
                             </li>
