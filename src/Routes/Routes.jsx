@@ -9,6 +9,7 @@ import PrivateRoute from "./PrivateRoute";
 import ContactUs from "../pages/ContactUs/ContactUs";
 import Dashboard from "../Layouts/Dashboard";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
+import WorkSheet from "../pages/Dashboard/Employee/WorkSheet";
 
 export const router = createBrowserRouter([
     {
@@ -37,9 +38,15 @@ export const router = createBrowserRouter([
         path: 'dashboard',
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
+            // admin
             {
                 path: 'all-employee-list',
                 element: <AllUsers></AllUsers>
+            },
+            // employee
+            {
+                path: 'work-sheet',
+                element: <WorkSheet></WorkSheet>
             },
         ]
     },

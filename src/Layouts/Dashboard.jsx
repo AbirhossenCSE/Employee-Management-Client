@@ -8,7 +8,7 @@ import useAdmin from '../hooks/useAdmin';
 
 const Dashboard = () => {
 
-    // TODO: get isAdmin value from the daatabase
+    // get isAdmin value from the daatabase
     const [isAdmin] = useAdmin();
     const {user} = useAuth();
 
@@ -27,11 +27,9 @@ const Dashboard = () => {
                         </>
                             :
                             <>
-                                <li><NavLink to='/dashboard/userHome'> <FaHome></FaHome> User Home</NavLink></li>
+                                <li><NavLink to='/dashboard/employeeHome'> <FaHome></FaHome> Employee Home</NavLink></li>
 
-                                <li><NavLink to='/dashboard/review'> <MdOutlineRateReview /> Review</NavLink></li>
-
-                                <li><NavLink to='/dashboard/paymentHistory'> <FaList></FaList> My Payment History</NavLink></li>
+                                <li><NavLink to='/dashboard/work-sheet'> <FaList></FaList> Work-Sheet</NavLink></li>
                             </>
                     }
 
