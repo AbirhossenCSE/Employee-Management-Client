@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -10,14 +10,16 @@ const CheckoutForm = ({ user }) => {
     const [error, setError] = useState("");
     const [clientSecret, setClientSecret] = useState("");
 
+    // console.log("User Info:", user);
+    // console.log("Client Secret:", clientSecret);
     // Fetch client secret when component mounts
-    React.useEffect(() => {
-        if (user.salary) {
-            axiosSecure.post("/create-payment-intent", { amount: user.salary * 100 }).then((res) => {
+    useEffect(() => {
+        if (user?.salary) {
+            axiosSecure.post("/create-payment-intent", { amount: user?.salary * 100 }).then((res) => {
                 setClientSecret(res.data.clientSecret);
             });
         }
-    }, [axiosSecure, user.salary]);
+    }, [axiosSecure, user?.salary]);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -52,7 +54,25 @@ const CheckoutForm = ({ user }) => {
         if (confirmError) {
             setError(confirmError.message);
         } else if (paymentIntent.status === "succeeded") {
-            Swal.fire("Payment Successful!", `Transaction ID: ${paymentIntent.id}`, "success");
+            // Send payment data to the backend
+            const paymentData = {
+                transactionId: paymentIntent.id,
+                paidAmount: paymentIntent.amount / 100, // Convert cents to dollars
+                employeeName: user.name,
+                employeeEmail: user.email,
+            };
+
+            axiosSecure.post("/payments", paymentData)
+                .then((res) => {
+                    console.log("Payment saved successfully:", res.data);
+                    if (res.data.insertedId) {
+                        Swal.fire("Payment Successful!", `Transaction ID: ${paymentIntent.id}`, "success");
+                    }
+                })
+                .catch((err) => {
+                    console.error("Error Response:", err.response.data);
+                });
+
         }
     };
 
@@ -76,7 +96,7 @@ const CheckoutForm = ({ user }) => {
                     }}
                 />
                 <button className="btn btn-sm mt-4" type="submit" disabled={!stripe || !clientSecret}>
-                    Salary Amount $ {user.salary}
+                    Pay Salary Amount $ {user.salary}
                 </button>
                 {error && <p className="text-red-500 mt-2">{error}</p>}
             </form>
