@@ -262,13 +262,13 @@ const AllUsers = () => {
     return (
         <div>
             <div className='flex justify-evenly'>
-                <h2 className='text-3xl'>All Users</h2>
-                <h2 className='text-3xl'>Total Users {users.length}</h2>
+                <h2 className='text-3xl font-bold my-4 border-b-2'>All Employees</h2>
+                <h2 className='text-3xl font-bold my-4 border-b-2'>Total Employees {users.length}</h2>
             </div>
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
                     {/* Table Header */}
-                    <thead>
+                    <thead className='bg-orange-400 text-white'>
                         <tr>
                             <th>#</th>
                             <th>Employee Name</th>

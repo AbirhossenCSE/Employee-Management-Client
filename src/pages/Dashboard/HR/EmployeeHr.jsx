@@ -15,12 +15,12 @@ const EmployeeHr = () => {
     const axiosSecure = useAxiosSecure();
     const queryClient = useQueryClient();
 
-    // Fetch all employees
+    // Fetch all employees with role "Employee"
     const { data: employees = [], isLoading } = useQuery({
         queryKey: ["employees"],
         queryFn: async () => {
             const res = await axiosSecure.get("/users");
-            return res.data;
+            return res.data.filter((user) => user.role === "Employee");
         },
     });
 
@@ -38,6 +38,22 @@ const EmployeeHr = () => {
 
     const handleToggleVerified = (id) => {
         toggleVerifyMutation.mutate(id);
+    };
+
+    // Add payable property
+    const addPayableMutation = useMutation({
+        mutationFn: async (id) => {
+            const res = await axiosSecure.patch(`/users/payable/${id}`, { payable: true });
+            return res.data;
+        },
+        onSuccess: () => {
+            Swal.fire("Success!", "Employee marked as payable.", "success");
+            queryClient.invalidateQueries(["employees"]);
+        },
+    });
+
+    const handleAddPayable = (id) => {
+        addPayableMutation.mutate(id);
     };
 
     // Define table columns
@@ -68,7 +84,7 @@ const EmployeeHr = () => {
                 },
             },
             {
-                accessorKey: "bankAccount",
+                accessorKey: "bank_account_no",
                 header: "Bank Account",
             },
             {
@@ -77,16 +93,16 @@ const EmployeeHr = () => {
                 cell: (info) => `$${info.getValue()}`,
             },
             {
-                id: "actions",
-                header: "Actions",
+                accessorKey: "payable",
+                header: "Pay",
                 cell: (info) => {
                     const employeeId = info.row.original._id;
                     return (
                         <button
-                            onClick={() => Swal.fire("Details", `Details for ${employeeId}`, "info")}
-                            className="btn btn-sm btn-info"
+                            onClick={() => handleAddPayable(employeeId)}
+                            className="btn btn-sm btn-primary"
                         >
-                            Details
+                            Pay
                         </button>
                     );
                 },

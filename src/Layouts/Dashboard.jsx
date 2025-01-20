@@ -1,5 +1,5 @@
 import React from "react";
-import { FaHome, FaUsers, FaEnvelope } from "react-icons/fa";
+import { FaHome, FaUsers, FaEnvelope, FaMoneyBill } from "react-icons/fa";
 import { NavLink, Outlet } from "react-router-dom";
 import useRole from "../hooks/useRole";
 import useAuth from "../hooks/useAuth";
@@ -24,6 +24,11 @@ const Dashboard = () => {
                             <li>
                                 <NavLink to="/dashboard/all-employee-list">
                                     <FaUsers /> All Users
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dashboard/payroll">
+                                    <FaMoneyBill></FaMoneyBill>  Payroll
                                 </NavLink>
                             </li>
                         </>
