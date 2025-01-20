@@ -11,6 +11,7 @@ import Dashboard from "../Layouts/Dashboard";
 import AllUsers from "../pages/Dashboard/AllUsers/AllUsers";
 import WorkSheet from "../pages/Dashboard/Employee/WorkSheet";
 import EmployeeHr from "../pages/Dashboard/HR/EmployeeHr";
+import Progress from "../pages/Dashboard/HR/Progress";
 
 export const router = createBrowserRouter([
     {
@@ -48,6 +49,10 @@ export const router = createBrowserRouter([
             {
                 path: 'employee-list',
                 element: <EmployeeHr></EmployeeHr>
+            },
+            {
+                path: 'progress',
+                element: <Progress></Progress>
             },
             // employee
             {

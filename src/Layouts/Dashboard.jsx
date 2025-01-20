@@ -41,6 +41,11 @@ const Dashboard = () => {
                                     <FaUsers /> All Employees
                                 </NavLink>
                             </li>
+                            <li>
+                                <NavLink to="/dashboard/progress">
+                                    <FaUsers /> Progress
+                                </NavLink>
+                            </li>
                         </>
                     )}
 
@@ -55,6 +60,9 @@ const Dashboard = () => {
                                 <NavLink to="/dashboard/work-sheet">
                                     <FaUsers /> Work-Sheet
                                 </NavLink>
+                                {/* <NavLink to="/dashboard/payment-history">
+                                    <FaUsers /> Payment History
+                                </NavLink> */}
                             </li>
                         </>
                     )}

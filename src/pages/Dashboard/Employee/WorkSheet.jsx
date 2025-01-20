@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import useAuth from "../../../hooks/useAuth";
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import Swal from "sweetalert2";
@@ -9,17 +10,22 @@ const WorkSheet = () => {
     const [task, setTask] = useState("");
     const [hoursWorked, setHoursWorked] = useState(0);
     const [date, setDate] = useState(new Date());
-    const [editData, setEditData] = useState(null); // For editing
+    const [editData, setEditData] = useState(null);
+
+    const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const queryClient = useQueryClient();
 
-    // Fetch employee-specific tasks
-    const { data: tasks = [], refetch } = useQuery({
-        queryKey: ["tasks"],
+    // Fetch tasks for the logged-in user
+    const { data: tasks = [], refetch, isLoading } = useQuery({
+        queryKey: ["tasks", user?.email],
         queryFn: async () => {
-            const res = await axiosSecure.get("/tasks");
+            const res = await axiosSecure.get("/tasks", {
+                params: { email: user?.email },
+            });
             return res.data;
         },
+        enabled: !!user?.email,
     });
 
     // Add new task
@@ -47,7 +53,6 @@ const WorkSheet = () => {
         },
     });
 
-
     // Delete task
     const deleteMutation = useMutation({
         mutationFn: async (id) => {
@@ -65,11 +70,12 @@ const WorkSheet = () => {
             Swal.fire("Error!", "Please fill out all fields correctly.", "error");
             return;
         }
-
         const newTask = {
             task,
             hoursWorked,
             date,
+            email: user?.email,
+            EmployeeName: user?.displayName,
         };
 
         addMutation.mutate(newTask);
@@ -78,23 +84,9 @@ const WorkSheet = () => {
         setDate(new Date());
     };
 
-    const handleEdit = (task) => {
-        setEditData({ ...task });
-    };
-
-
-    const handleUpdate = () => {
-        if (!editData.task || editData.hoursWorked <= 0) {
-            Swal.fire("Error!", "Please fill out all fields correctly.", "error");
-            return;
-        }   
-        const { _id, ...updatePayload } = editData;
-        updateMutation.mutate({ _id, ...updatePayload });
-    };
-    
-    const handleDelete = (id) => {
-        deleteMutation.mutate(id);
-    };
+    if (isLoading) {
+        return <p>Loading tasks...</p>;
+    }
 
     return (
         <div>
@@ -156,13 +148,13 @@ const WorkSheet = () => {
                                 <td>
                                     <button
                                         className="btn btn-sm btn-warning"
-                                        onClick={() => handleEdit(task)}
+                                        onClick={() => setEditData(task)}
                                     >
                                         🖊
                                     </button>
                                     <button
                                         className="btn btn-sm btn-error ml-2"
-                                        onClick={() => handleDelete(task._id)}
+                                        onClick={() => deleteMutation.mutate(task._id)}
                                     >
                                         ❌
                                     </button>
@@ -213,14 +205,10 @@ const WorkSheet = () => {
                             />
 
                             <div className="modal-action">
-                                <button type="button" className="btn btn-success" onClick={handleUpdate}>
+                                <button type="button" className="btn btn-success" onClick={() => updateMutation.mutate(editData)}>
                                     Update
                                 </button>
-                                <button
-                                    type="button"
-                                    className="btn btn-error"
-                                    onClick={() => setEditData(null)}
-                                >
+                                <button type="button" className="btn btn-error" onClick={() => setEditData(null)}>
                                     Close
                                 </button>
                             </div>
