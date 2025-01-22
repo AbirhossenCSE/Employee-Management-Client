@@ -46,23 +46,23 @@ const ContactUs = () => {
     };
 
     return (
-        <section className="max-w-4xl mx-auto py-12 px-6 bg-gray-100 rounded-md shadow-md">
+        <section className="max-w-4xl mx-auto p-12 px-6 bg-gray-50 rounded-md shadow-md">
             {/* Company Address */}
-            <div className="mb-8">
+            <div className="mb-8 my-10">
                 <h2 className="text-4xl font-semibold text-blue-600 mb-4 text-center">Contact Us</h2>
                 <p className="text-center text-gray-700 mb-4">
-                    Our office is located at:
+                    Our office is located at: Dhaka
                 </p>
                 <address className="text-center text-gray-600 mb-6">
-                    <strong>Dummy Company Name</strong>
+                    <strong>Smart Employee Company</strong>
                     <br />
-                    1234 Street Name, Suite 567
+                    1234 Mirpur, Dhaka
                     <br />
-                    City, State, ZIP Code
+                    Dhaka, 1200
                     <br />
                     Phone: (123) 456-7890
                     <br />
-                    Email: info@dummycompany.com
+                    Email: info@smartemployee.com
                 </address>
                 <hr className="border-gray-300" />
             </div>

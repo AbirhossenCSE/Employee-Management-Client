@@ -17,6 +17,7 @@ import Payment from "../pages/Dashboard/Admin/Payment";
 import PaymentHistory from "../pages/Dashboard/Employee/PaymentHistory";
 import DetailsPage from "../pages/Dashboard/HR/DetailsPage";
 import ErrorBoundary from "../assets/components/ErrorBoundary";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
     {
@@ -48,7 +49,7 @@ export const router = createBrowserRouter([
             // admin
             {
                 path: 'all-employee-list',
-                element: <AllUsers></AllUsers>
+                element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
             {
                 path: 'payroll',

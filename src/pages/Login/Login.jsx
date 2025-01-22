@@ -46,16 +46,7 @@ const Login = () => {
             })
 
     }
-    // const handleValidateCaptcha = (e) => {
-    //     const user_captcha_value = e.target.value;
-    //     if (validateCaptcha(user_captcha_value)) {
-    //         setDisabled(false);
-    //     }
-    //     else {
-    //         setDisabled(true);
-    //     }
 
-    // }
 
     return (
         <div>

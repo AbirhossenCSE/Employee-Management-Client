@@ -4,7 +4,7 @@ import { Carousel } from 'react-responsive-carousel';
 
 import img1 from '../../../assets/banner/01.jpg'
 import img2 from '../../../assets/banner/02.jpg'
-import img3 from '../../../assets/banner/03.png'
+import img3 from '../../../assets/banner/03.jpg'
 
 
 const Banner = () => {
