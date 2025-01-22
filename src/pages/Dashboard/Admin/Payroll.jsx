@@ -2,15 +2,16 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { Link } from "react-router-dom";
+import useAxiosPublic from "../../../hooks/useAxiosPublic";
 
 const Payroll = () => {
     const axiosSecure = useAxiosSecure();
+    const axiosPublic = useAxiosPublic();
 
-    // Fetch users with payable = true
     const { data: payableUsers = [], isLoading } = useQuery({
         queryKey: ["payableUsers"],
         queryFn: async () => {
-            const res = await axiosSecure.get("/users/payable");
+            const res = await axiosPublic.get("/users/payable");
             return res.data;
         },
     });
