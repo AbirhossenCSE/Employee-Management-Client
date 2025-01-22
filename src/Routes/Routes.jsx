@@ -15,6 +15,8 @@ import Progress from "../pages/Dashboard/HR/Progress";
 import Payroll from "../pages/Dashboard/Admin/Payroll";
 import Payment from "../pages/Dashboard/Admin/Payment";
 import PaymentHistory from "../pages/Dashboard/Employee/PaymentHistory";
+import DetailsPage from "../pages/Dashboard/HR/DetailsPage";
+import ErrorBoundary from "../assets/components/ErrorBoundary";
 
 export const router = createBrowserRouter([
     {
@@ -64,6 +66,11 @@ export const router = createBrowserRouter([
             {
                 path: 'progress',
                 element: <Progress></Progress>
+            },
+            {
+                path: 'employee-list/details/:id',
+                element: <DetailsPage></DetailsPage>
+                // element: <ErrorBoundary><DetailsPage></DetailsPage></ErrorBoundary>
             },
             // employee
             {

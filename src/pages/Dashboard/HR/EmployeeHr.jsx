@@ -6,6 +6,7 @@ import {
     getPaginationRowModel,
     flexRender,
 } from "@tanstack/react-table";
+import { useNavigate } from "react-router-dom";
 
 import Swal from "sweetalert2";
 import { FaCheck, FaTimes } from "react-icons/fa";
@@ -14,8 +15,8 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const EmployeeHr = () => {
     const axiosSecure = useAxiosSecure();
     const queryClient = useQueryClient();
-
-    // Fetch all employees with role "Employee"
+    const navigate = useNavigate(); 
+    
     const { data: employees = [], isLoading } = useQuery({
         queryKey: ["employees"],
         queryFn: async () => {
@@ -54,6 +55,11 @@ const EmployeeHr = () => {
 
     const handleAddPayable = (id) => {
         addPayableMutation.mutate(id);
+    };
+
+    // Navigate to details page
+    const handleViewDetails = (id) => {
+        navigate(`details/${id}`);
     };
 
     // Define table columns
@@ -107,6 +113,23 @@ const EmployeeHr = () => {
                     );
                 },
             },
+            {
+                accessorKey: "details",
+                header: "Details",
+                cell: (info) => {
+                    const employeeId = info.row.original._id;
+                    return (
+                        <button
+                            onClick={() => navigate(`details/${employeeId}`)}
+                            className="btn btn-info"
+                        >
+                            Details
+                        </button>
+
+                    );
+                },
+            },
+
         ],
         []
     );
