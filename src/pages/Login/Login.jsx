@@ -26,22 +26,12 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 Swal.fire({
+                    position: "top-end",
+                    icon: "success",
                     title: "Successfully Logged In",
-                    showClass: {
-                        popup: `
-                    animate__animated
-                    animate__fadeInUp
-                    animate__faster
-                  `
-                    },
-                    hideClass: {
-                        popup: `
-                    animate__animated
-                    animate__fadeOutDown
-                    animate__faster
-                  `
-                    }
-                });
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
                 navigate(from, { replace: true });
             })
 

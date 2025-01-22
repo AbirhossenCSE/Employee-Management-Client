@@ -18,6 +18,9 @@ import PaymentHistory from "../pages/Dashboard/Employee/PaymentHistory";
 import DetailsPage from "../pages/Dashboard/HR/DetailsPage";
 import ErrorBoundary from "../assets/components/ErrorBoundary";
 import AdminRoute from "./AdminRoute";
+import AdminHome from "../pages/Dashboard/Admin/AdminHome";
+import HrHome from "../pages/Dashboard/HR/HrHome";
+import EmployeeHome from "../pages/Dashboard/Employee/EmployeeHome";
 
 export const router = createBrowserRouter([
     {
@@ -48,6 +51,10 @@ export const router = createBrowserRouter([
         children: [
             // admin
             {
+                path: 'adminHome',
+                element: <AdminRoute><AdminHome></AdminHome></AdminRoute>
+            },
+            {
                 path: 'all-employee-list',
                 element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
@@ -61,26 +68,33 @@ export const router = createBrowserRouter([
               },
             // Hr
             {
+                path: 'hrHome',
+                element: <PrivateRoute><HrHome></HrHome></PrivateRoute>
+            },
+            {
                 path: 'employee-list',
-                element: <EmployeeHr></EmployeeHr>
+                element: <PrivateRoute><EmployeeHr></EmployeeHr></PrivateRoute>
             },
             {
                 path: 'progress',
-                element: <Progress></Progress>
+                element: <PrivateRoute><Progress></Progress></PrivateRoute>
             },
             {
                 path: 'employee-list/details/:id',
-                element: <DetailsPage></DetailsPage>
-                // element: <ErrorBoundary><DetailsPage></DetailsPage></ErrorBoundary>
+                element: <PrivateRoute><DetailsPage></DetailsPage></PrivateRoute>
             },
             // employee
             {
+                path: 'employeeHome',
+                element: <PrivateRoute><EmployeeHome></EmployeeHome></PrivateRoute>
+            },
+            {
                 path: 'work-sheet',
-                element: <WorkSheet></WorkSheet>
+                element: <PrivateRoute><WorkSheet></WorkSheet></PrivateRoute>
             },
             {
                 path: 'payment-history',
-                element: <PaymentHistory></PaymentHistory>
+                element: <PrivateRoute><PaymentHistory></PaymentHistory></PrivateRoute>
             },
         ]
     },
