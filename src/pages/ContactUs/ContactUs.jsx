@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import Swal from 'sweetalert2';
 import useAxiosPublic from '../../hooks/useAxiosPublic';
+import { Helmet } from 'react-helmet';
 
 const ContactUs = () => {
     const axiosPublic = useAxiosPublic();
@@ -48,6 +49,9 @@ const ContactUs = () => {
     return (
         <section className="max-w-4xl mx-auto p-12 px-6 bg-gray-50 rounded-md shadow-md">
             {/* Company Address */}
+            <Helmet>
+                <title> SmartEmployee | Contact Us</title>
+            </Helmet>
             <div className="mb-8 my-10">
                 <h2 className="text-4xl font-semibold text-blue-600 mb-4 text-center">Contact Us</h2>
                 <p className="text-center text-gray-700 mb-4">

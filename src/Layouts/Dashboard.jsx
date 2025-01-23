@@ -1,15 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaHome, FaUsers, FaEnvelope, FaMoneyBill } from "react-icons/fa";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import useRole from "../hooks/useRole";
 import useAuth from "../hooks/useAuth";
+import { Helmet } from "react-helmet";
 
 const Dashboard = () => {
     const [role] = useRole(); // Fetch the user's role
     const { user } = useAuth();
+    const navigate = useNavigate();
+
+    // Redirect based on role when Dashboard is accessed
+    useEffect(() => {
+        if (role === "admin") {
+            navigate("/dashboard/adminHome");
+        } else if (role === "HR") {
+            navigate("/dashboard/hrHome");
+        } else if (role === "Employee") {
+            navigate("/dashboard/employeeHome");
+        }
+    }, [role, navigate]);
 
     return (
         <div className="flex">
+            <Helmet>
+                <title>SmartEmployee | Dashboard</title>
+            </Helmet>
             {/* Dashboard sidebar */}
             <div className="w-64 min-h-screen bg-orange-400">
                 <ul className="menu p-4">
@@ -28,7 +44,12 @@ const Dashboard = () => {
                             </li>
                             <li>
                                 <NavLink to="/dashboard/payroll">
-                                    <FaMoneyBill></FaMoneyBill>  Payroll
+                                    <FaMoneyBill /> Payroll
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink to="/dashboard/adminRev">
+                                    <FaMoneyBill /> Review
                                 </NavLink>
                             </li>
                         </>
@@ -67,7 +88,7 @@ const Dashboard = () => {
                                 </NavLink>
                             </li>
                             <li>
-                                 <NavLink to="/dashboard/payment-history">
+                                <NavLink to="/dashboard/payment-history">
                                     <FaUsers /> Payment History
                                 </NavLink>
                             </li>
@@ -86,6 +107,11 @@ const Dashboard = () => {
                             <FaEnvelope /> Contact Us
                         </NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/allEmployee">
+                            <FaUsers /> All Employee
+                        </NavLink>
+                    </li>
                 </ul>
             </div>
             {/* Dashboard content */}
@@ -97,4 +123,3 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-

@@ -21,6 +21,8 @@ import AdminRoute from "./AdminRoute";
 import AdminHome from "../pages/Dashboard/Admin/AdminHome";
 import HrHome from "../pages/Dashboard/HR/HrHome";
 import EmployeeHome from "../pages/Dashboard/Employee/EmployeeHome";
+import AllEmployee from "../pages/Shared/AllUser/AllEmployee";
+import AdminRevew from "../pages/Dashboard/Employee/AdminRevew";
 
 export const router = createBrowserRouter([
     {
@@ -46,6 +48,10 @@ export const router = createBrowserRouter([
         ]
     },
     {
+        path: 'allEmployee',
+        element: <AllEmployee></AllEmployee>
+    },
+    {
         path: 'dashboard',
         element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
@@ -57,6 +63,10 @@ export const router = createBrowserRouter([
             {
                 path: 'all-employee-list',
                 element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
+            },
+            {
+                path: 'adminRev',
+                element: <AdminRoute><AdminRevew></AdminRevew></AdminRoute>
             },
             {
                 path: 'payroll',
