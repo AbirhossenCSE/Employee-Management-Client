@@ -12,6 +12,7 @@ const PaymentHistory = () => {
 
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth(); 
+
     useEffect(() => {
         axiosSecure
             .get(`/payment-history?page=${currentPage}&limit=${itemsPerPage}&email=${user.email}`)
@@ -28,11 +29,11 @@ const PaymentHistory = () => {
 
     return (
         <div className="p-4">
-            <h2 className="text-2xl font-bold mb-4">Payment History</h2>
+            <h2 className="text-3xl font-bold mb-4">Payment History</h2>
             <div className="overflow-x-auto">
                 <table className="table-auto w-full border-collapse border border-gray-200">
                     <thead>
-                        <tr className="bg-gray-100">
+                        <tr className="bg-orange-400">
                             <th className="border px-4 py-2">Month</th>
                             <th className="border px-4 py-2">Year</th>
                             <th className="border px-4 py-2">Amount</th>
@@ -42,10 +43,10 @@ const PaymentHistory = () => {
                     <tbody>
                         {payments.map((payment) => (
                             <tr key={payment.transactionId}>
-                                <td className="border px-4 py-2">{payment.month}</td>
-                                <td className="border px-4 py-2">{payment.year}</td>
-                                <td className="border px-4 py-2">${payment.paidAmount}</td>
-                                <td className="border px-4 py-2">{payment.transactionId}</td>
+                                <td className="border text-center px-4 py-2">{payment.month}</td>
+                                <td className="border text-center px-4 py-2">{payment.year}</td>
+                                <td className="border text-center px-4 py-2">${payment.paidAmount}</td>
+                                <td className="border text-center px-4 py-2">{payment.transactionId}</td>
                             </tr>
                         ))}
                     </tbody>

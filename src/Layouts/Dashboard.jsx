@@ -1,25 +1,27 @@
 import React, { useEffect } from "react";
 import { FaHome, FaUsers, FaEnvelope, FaMoneyBill } from "react-icons/fa";
-import { NavLink, Outlet, useNavigate } from "react-router-dom";
+import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import useRole from "../hooks/useRole";
 import useAuth from "../hooks/useAuth";
 import { Helmet } from "react-helmet";
 
 const Dashboard = () => {
-    const [role] = useRole(); // Fetch the user's role
+    const [role] = useRole();
     const { user } = useAuth();
     const navigate = useNavigate();
+    const location = useLocation();
 
-    // Redirect based on role when Dashboard is accessed
     useEffect(() => {
-        if (role === "admin") {
-            navigate("/dashboard/adminHome");
-        } else if (role === "HR") {
-            navigate("/dashboard/hrHome");
-        } else if (role === "Employee") {
-            navigate("/dashboard/employeeHome");
+        if (location.pathname === "/dashboard") {
+            if (role === "admin") {
+                navigate("/dashboard/adminHome");
+            } else if (role === "HR") {
+                navigate("/dashboard/hrHome");
+            } else if (role === "Employee") {
+                navigate("/dashboard/employeeHome");
+            }
         }
-    }, [role, navigate]);
+    }, [role, navigate, location.pathname]);
 
     return (
         <div className="flex">

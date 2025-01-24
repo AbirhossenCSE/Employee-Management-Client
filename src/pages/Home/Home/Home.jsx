@@ -4,6 +4,7 @@ import Services from '../Services/Services';
 import Testimonials from '../Testimonials/Testimonials';
 import EmployeeList from '../EmployeeList/EmployeeList';
 import { Helmet } from 'react-helmet';
+import Faq from '../FAQ/Faq';
 
 const Home = () => {
     return (
@@ -14,7 +15,8 @@ const Home = () => {
             <Banner></Banner>
             <Services></Services>
             <EmployeeList></EmployeeList>
-            <Testimonials></Testimonials>            
+            <Testimonials></Testimonials> 
+            <Faq></Faq>           
         </div>
     );
 };

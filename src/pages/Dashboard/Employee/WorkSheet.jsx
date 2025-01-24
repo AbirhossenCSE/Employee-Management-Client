@@ -90,7 +90,7 @@ const WorkSheet = () => {
 
     return (
         <div>
-            <h2 className="text-2xl mb-4">Employee WorkSheet</h2>
+            <h2 className="text-3xl font-bold my-6">Employee WorkSheet</h2>
             {/* Form */}
             <form className="flex items-center gap-4 mb-6">
                 <select
@@ -121,8 +121,8 @@ const WorkSheet = () => {
                     className="input input-bordered"
                 />
 
-                <button type="button" onClick={handleAddTask} className="btn btn-primary">
-                    Add
+                <button type="button" onClick={handleAddTask} className="btn bg-orange-400">
+                    Add Your Work
                 </button>
             </form>
 

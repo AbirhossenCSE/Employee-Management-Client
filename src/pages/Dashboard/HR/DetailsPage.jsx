@@ -22,7 +22,7 @@ const DetailsPage = () => {
 
                 const groupedData = paymentData.payments.reduce((acc, payment) => {
                     const monthYear = `${payment.month} ${payment.year}`;
-                    acc[monthYear] = (acc[monthYear] || 0) + payment.paidAmount;
+                    acc[monthYear] = (acc[monthYear] || 0) + payment.paidAmount / 100;
                     return acc;
                 }, {});
 
@@ -33,7 +33,7 @@ const DetailsPage = () => {
                     labels,
                     datasets: [
                         {
-                            label: "Salary (in $)",
+                            label: "Salary (in USD)",
                             data: salaryData,
                             backgroundColor: "rgba(75, 192, 192, 0.6)",
                             borderColor: "rgba(75, 192, 192, 1)",
@@ -100,7 +100,7 @@ const DetailsPage = () => {
                             y: {
                                 title: {
                                     display: true,
-                                    text: "Salary",
+                                    text: "Salary (in USD)",
                                 },
                                 ticks: {
                                     beginAtZero: true,

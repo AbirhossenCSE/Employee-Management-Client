@@ -42,7 +42,7 @@ const Progress = () => {
 
     return (
         <div>
-            <h2 className="text-2xl font-bold mb-4">Progress</h2>
+            <h2 className="text-2xl font-bold mb-4">All Employe Works</h2>
             <div className="flex items-center gap-4 mb-6">
                 <select
                     value={selectedEmployee}

@@ -22,7 +22,7 @@ const AllEmployee = () => {
     }, [axiosPublic]);
 
     return (
-        <div className="p-6">
+        <div className="p-1">
             <NavBar></NavBar>
             <Helmet>
                 <title> SmartEmployee | All Employee</title>

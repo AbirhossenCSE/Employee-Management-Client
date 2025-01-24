@@ -25,13 +25,13 @@ const UserPage = () => {
 
     return (
         <div className="p-6">
-            <h1 className="text-4xl font-bold mb-4">Welcome Back, {user?.displayName || 'User'}!</h1>
+            <h1 className="text-4xl text-center font-bold mb-4">Welcome Back, <span className='text-red-500'>{user?.displayName || 'User'}!</span></h1>
             {userInfo ? (
-                <div>
-                    <div>
-                        <img src={userInfo.photo} alt={userInfo.name} />
+                <div className='flex items-center gap-4 bg-gray-50 p-6 py-4 shadow-lg'>
+                    <div className='w-2/12'>
+                        <img src={userInfo.photo} className='w-full space-y-2 mt-10 ' alt={userInfo.name} />
                     </div>
-                    <div className="bg-gray-50 p-6 py-4 space-y-2 mt-10 rounded-lg shadow-lg">
+                    <div className="w-full p-6 py-4 space-y-2 mt-10 rounded-lg ">
                         <p className="text-lg">
                             <strong>Name:</strong> {userInfo.name}
                         </p>
@@ -42,7 +42,7 @@ const UserPage = () => {
                             <strong>Your Role:</strong> {userInfo.role}
                         </p>
                         <p className="text-lg">
-                            <strong>Your Role:</strong> {userInfo.designation
+                            <strong>Designation :</strong> {userInfo.designation
                             }
                         </p>
                         <p className="text-lg">
