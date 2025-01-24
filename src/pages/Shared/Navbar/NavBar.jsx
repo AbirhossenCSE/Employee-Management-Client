@@ -1,10 +1,12 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProviders';
+import { PiUserSquare } from 'react-icons/pi';
+import logo from '../../../assets/logo/logo.jpg'
 
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext);
-    const [showLogout, setShowLogout] = useState(false); 
+    const [showLogout, setShowLogout] = useState(false);
 
     const handleSignOut = () => {
         logOut()
@@ -35,7 +37,7 @@ const NavBar = () => {
 
     return (
         <div>
-            <div className="navbar w-11/12 fixed z-10 bg-opacity-50 bg-green-800 text-white">
+            <div className="navbar w-11/12 fixed z-10 bg-opacity-70 bg-green-800 text-white">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -61,7 +63,10 @@ const NavBar = () => {
                             {links}
                         </ul>
                     </div>
-                    <a className="btn btn-ghost text-xl">Employee</a>
+                    <a className="btn btn-ghost font-bold text-xl">
+                        <img src={logo} className='w-6 h-6' alt="" />
+                        Smart<span className='text-red-800'>Employee</span>
+                    </a>
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <ul className="menu menu-horizontal px-1">{links}</ul>
