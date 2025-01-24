@@ -11,7 +11,6 @@ const AllUsers = () => {
     const [selectedUser, setSelectedUser] = useState(null);
     const [view, setView] = useState('table');
 
-    // Fetch users with React Query
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
@@ -120,8 +119,8 @@ const AllUsers = () => {
     return (
         <div>
             <div className="flex justify-between mb-4">
-                <h2 className="text-3xl font-bold">All Employees</h2>
-                <h2 className="text-3xl font-bold">Total Employees {users.length}</h2>
+                <h2 className="text-3xl text-orange-400 font-bold">All Employees</h2>
+                <h2 className="text-3xl text-orange-400 font-bold">Total Employees: {users.length}</h2>
                 {/* Toggle Button */}
                 <button
                     onClick={() => setView(view === 'table' ? 'card' : 'table')}
@@ -201,7 +200,7 @@ const AllUsers = () => {
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {users.map((user, index) => (
-                        <div key={user._id} className="card shadow-lg p-4">
+                        <div key={user._id} className="card bg-gray-200 shadow-lg p-4">
                             <div className='mx-auto text-center py-2'>
                                 <h3 className="text-2xl font-semibold">{user.name}</h3>
                                 <p>{user.email}</p>
@@ -251,7 +250,7 @@ const AllUsers = () => {
                                 type="number"
                                 defaultValue={selectedUser.salary || 0}
                                 className="input input-bordered w-full mt-2"
-                                min={selectedUser.salary} // Ensure salary can't decrease
+                                min={selectedUser.salary} 
                             />
                         </div>
                         <div className="modal-action">

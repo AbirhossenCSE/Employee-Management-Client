@@ -90,9 +90,9 @@ const WorkSheet = () => {
 
     return (
         <div>
-            <h2 className="text-3xl font-bold my-6">Employee WorkSheet</h2>
+            <h2 className="text-3xl font-bold mb-4">Employee WorkSheet</h2>
             {/* Form */}
-            <form className="flex items-center gap-4 mb-6">
+            <form className="flex items-center gap-4 mb-6 ">
                 <select
                     value={task}
                     onChange={(e) => setTask(e.target.value)}
@@ -122,7 +122,7 @@ const WorkSheet = () => {
                 />
 
                 <button type="button" onClick={handleAddTask} className="btn bg-orange-400">
-                    Add Your Work
+                    Add New Work
                 </button>
             </form>
 
@@ -130,7 +130,7 @@ const WorkSheet = () => {
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
                     <thead>
-                        <tr>
+                        <tr className="bg-orange-400">
                             <th>#</th>
                             <th>Task</th>
                             <th>Hours Worked</th>

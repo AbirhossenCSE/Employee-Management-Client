@@ -12,6 +12,8 @@ const PaymentHistory = () => {
 
     const axiosSecure = useAxiosSecure();
     const { user } = useAuth(); 
+    // console.log(user);
+    
 
     useEffect(() => {
         axiosSecure
@@ -28,8 +30,8 @@ const PaymentHistory = () => {
     };
 
     return (
-        <div className="p-4">
-            <h2 className="text-3xl font-bold mb-4">Payment History</h2>
+        <div className="text-center">
+            <h2 className="text-3xl font-bold mb-8">{user?.displayName}'s Payment History</h2>
             <div className="overflow-x-auto">
                 <table className="table-auto w-full border-collapse border border-gray-200">
                     <thead>

@@ -57,7 +57,7 @@ const CheckoutForm = ({ user }) => {
             // Send payment data to the backend
             const paymentData = {
                 transactionId: paymentIntent.id,
-                paidAmount: paymentIntent.amount / 100, // Convert cents to dollars
+                paidAmount: paymentIntent.amount / 100,
                 employeeName: user.name,
                 employeeEmail: user.email,
             };
@@ -86,7 +86,7 @@ const CheckoutForm = ({ user }) => {
                                 fontSize: "16px",
                                 color: "#424770",
                                 "::placeholder": {
-                                    color: "#aab7c4",
+                                    color: "#FFA500",
                                 },
                             },
                             invalid: {
@@ -95,7 +95,7 @@ const CheckoutForm = ({ user }) => {
                         },
                     }}
                 />
-                <button className="btn btn-sm mt-4" type="submit" disabled={!stripe || !clientSecret}>
+                <button className="btn bg-orange-400 mt-8" type="submit" disabled={!stripe || !clientSecret}>
                     Pay Salary Amount $ {user.salary}
                 </button>
                 {error && <p className="text-red-500 mt-2">{error}</p>}

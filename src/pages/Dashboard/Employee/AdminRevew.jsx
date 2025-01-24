@@ -38,15 +38,15 @@ const AdminRevew = () => {
                 heading="Review Page"
             ></SectionTitle>
 
-            <div className="w-full max-w-5xl mt-10 bg-gray-200 rounded-lg p-20">
+            <div className="w-full max-w-5xl mt-10 bg-orange-400 text-black rounded-lg p-20">
                 <Slider {...settings}>
                     {reviews.map((review) => (
                         <div key={review._id} className="p-6 border rounded shadow-lg text-center">
-                            <h3 className="text-xl font-bold p-4">{review.name}</h3>
-                            <p className="text-gray-600">{review.email}</p>
-                            <p className="mt-4 text-gray-800">{review.message}</p>
-                            <p className="mt-2 text-sm text-gray-500">
-                                {new Date(review.date).toLocaleDateString()}
+                            <h3 className="text-2xl text-black font-bold p-4">{review.name}</h3>
+                            <p className="text-black text-xl">{review.email}</p>
+                            <p className="mt-4 text-xl text-black">Message: {review.message}</p>
+                            <p className="mt-2 text-xl text-black">
+                                Date: {new Date(review.date).toLocaleDateString()}
                             </p>
                         </div>
                     ))}

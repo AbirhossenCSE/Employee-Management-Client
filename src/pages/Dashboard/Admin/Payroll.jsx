@@ -22,11 +22,11 @@ const Payroll = () => {
 
     return (
         <div>
-            <h2 className="text-2xl mb-4">Payroll Management</h2>
+            <h2 className="text-3xl text-center font-bold mb-6">Payroll Management</h2>
             <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">
                     <thead>
-                        <tr>
+                        <tr className="bg-orange-400">
                             <th>Name</th>
                             <th>Salary</th>
                             <th>Month & Year</th>

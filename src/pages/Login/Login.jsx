@@ -1,42 +1,55 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../providers/AuthProviders';
 import SocialLogin from '../Shared/SocialLogin/SocialLogin';
 
-
 const Login = () => {
-    // const [disabled, setDisabled] = useState(true);
     const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
 
     const from = location.state?.from?.pathname || '/';
+    const [emailError, setEmailError] = useState('');
+    const [passwordError, setPasswordError] = useState('');
 
-
-    const handleLogin = event => {
+    const handleLogin = (event) => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
+
+        // Reset errors
+        setEmailError('');
+        setPasswordError('');
 
         signIn(email, password)
-            .then(result => {
+            .then((result) => {
                 const user = result.user;
-                console.log(user);
                 Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Successfully Logged In",
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Successfully Logged In',
                     showConfirmButton: false,
-                    timer: 1500
-                  });
+                    timer: 1500,
+                });
                 navigate(from, { replace: true });
             })
-
-    }
-
+            .catch((error) => {
+                const errorCode = error.code;
+                if (errorCode === 'auth/user-not-found') {
+                    setEmailError('No user found with this email.');
+                } else if (errorCode === 'auth/wrong-password') {
+                    setPasswordError('Incorrect password. Please try again.');
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Login Failed',
+                        text: error.message,
+                    });
+                }
+            });
+    };
 
     return (
         <div>
@@ -55,30 +68,47 @@ const Login = () => {
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" name='email' placeholder="email" className="input input-bordered" required />
+                                <input
+                                    type="email"
+                                    name="email"
+                                    placeholder="email"
+                                    className="input input-bordered"
+                                    required
+                                />
+                                {emailError && (
+                                    <p className="text-red-500 text-sm mt-1">{emailError}</p>
+                                )}
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" name='password' placeholder="password" className="input input-bordered" required />
+                                <input
+                                    type="password"
+                                    name="password"
+                                    placeholder="password"
+                                    className="input input-bordered"
+                                    required
+                                />
+                                {passwordError && (
+                                    <p className="text-red-500 text-sm mt-1">{passwordError}</p>
+                                )}
                                 <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                    <a href="#" className="label-text-alt link link-hover">
+                                        Forgot password?
+                                    </a>
                                 </label>
                             </div>
-                            <div className="form-control">
-                                {/* <label className="label">
-                                    <LoadCanvasTemplate />
-                                </label>
-                                <input type="text" onBlur={handleValidateCaptcha} name='captcha' placeholder="Type the text above" className="input input-bordered" required /> */}
-                                {/* <button onClick={handleValidateCaptcha} className='btn btn-outline btn-xs mt-2'>Validate</button> */}
-                            </div>
-                            
+
                             <div className="form-control mt-6">
-                                <input className="btn btn-primary" type="submit" value='Login' />
+                                <input className="btn btn-primary" type="submit" value="Login" />
                             </div>
                         </form>
-                        <p className='mx-auto p-2'><small>New Hare? <Link to='/signup'>Create a new account</Link> </small></p>
+                        <p className="mx-auto p-2">
+                            <small>
+                                New here? <Link to="/signup">Create a new account</Link>
+                            </small>
+                        </p>
 
                         <SocialLogin></SocialLogin>
                     </div>

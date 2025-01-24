@@ -42,7 +42,7 @@ const Progress = () => {
 
     return (
         <div>
-            <h2 className="text-2xl font-bold mb-4">All Employe Works</h2>
+            <h2 className="text-3xl text-center font-bold mb-6">All Employe Works</h2>
             <div className="flex items-center gap-4 mb-6">
                 <select
                     value={selectedEmployee}
@@ -68,7 +68,7 @@ const Progress = () => {
             <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">
                     <thead>
-                        <tr>
+                        <tr className="bg-orange-400">
                             <th>#</th>
                             <th>Employee</th>
                             <th>Task</th>

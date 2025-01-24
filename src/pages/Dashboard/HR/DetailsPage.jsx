@@ -60,7 +60,7 @@ const DetailsPage = () => {
 
     return (
         <div>
-            <h2 className="text-2xl font-bold mb-4"> {employeeDetails.name} Details</h2>
+            <h2 className="text-3xl text-center font-bold mb-6"> {employeeDetails.name}'s Details</h2>
             <div className="flex items-center gap-6 mb-8">
                 <img
                     src={employeeDetails.photo}
@@ -72,7 +72,7 @@ const DetailsPage = () => {
                     <p className="text-gray-600">Designation: {employeeDetails.designation}</p>
                 </div>
             </div>
-            <h3 className="text-lg font-semibold mb-4">Salary vs. Month and Year</h3>
+            <h3 className="text-xl font-bold mb-4">Salary Payment</h3>
 
             {/* Bar Chart */}
             <div className="mb-8">
