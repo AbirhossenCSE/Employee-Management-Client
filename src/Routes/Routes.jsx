@@ -35,7 +35,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'contactUs',
-                element: <PrivateRoute><ContactUs></ContactUs></PrivateRoute>
+                element: <ContactUs></ContactUs>
             },
             {
                 path: 'login',
@@ -70,11 +70,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'payroll',
-                element: <Payroll></Payroll>
+                element: <AdminRoute><Payroll></Payroll></AdminRoute>
             },
             {
                 path: 'payment',
-                element: <Payment></Payment> ,
+                element: <AdminRoute><Payment></Payment></AdminRoute> ,
               },
             // Hr
             {
