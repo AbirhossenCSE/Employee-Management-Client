@@ -5,7 +5,7 @@ import useAuth from './useAuth';
 
 
 const axiosSecure = axios.create({
-    baseURL: 'http://localhost:5000'
+    baseURL: 'https://employee-management-server-beryl-one.vercel.app'
 })
 
 const useAxiosSecure = () => {
