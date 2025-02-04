@@ -35,10 +35,10 @@ The Employee Management System is a web-based platform designed to help companie
 - MongoDB
 - Stripe (Payment Integration)
 
-<!-- ## Installation & Setup
+## Installation & Setup
 1. **Clone the repository:**
    ```sh
-   git clone https://github.com/your-repo-url.git
+   git clone https://github.com/AbirhossenCSE/Employee-Management-Client.git
    cd employee-management-system
    ```
 
@@ -107,10 +107,4 @@ Ensure you have Node.js installed.
    ```sh
    node server.js
    ```
-
-## Contribution
-Feel free to fork this repository and submit pull requests for improvements!
-
-## License
-This project is licensed under the MIT License. -->
 
