@@ -5,7 +5,7 @@ import { FaFacebook, FaTwitter, FaYoutube } from 'react-icons/fa';
 const Footer = () => {
     return (
         <footer>
-            <div className="footer bg-green-500 text-neutral-content p-10">
+            <div className="footer bg-base-300 text-white-content p-10">
                 <aside>
                     <img src={logo} className='w-16' alt="" />
                     <p className='text-xl font-bold'>
@@ -29,7 +29,7 @@ const Footer = () => {
                     </div>
                 </nav>
             </div>
-            <div className="bg-green-500 footer-center text-neutral-content p-4">
+            <div className="bg-base-300 footer-center text-black p-4">
                 <aside>
                     <p>Copyright © {new Date().getFullYear()} - All right reserved by Smart Employee Ltd</p>
                 </aside>

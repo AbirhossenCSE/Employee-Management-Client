@@ -7,41 +7,41 @@ const EmployeeList = () => {
     const employees = users.filter(item => item.role === 'Employee');
 
     return (
-        <div>
-            <SectionTitle
-                subHeading="Our Employees"
-                heading="Employees"
-            />
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 my-10">
-                {employees.map(employee => (
-                    <div
-                        key={employee._id}
-                        className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-md overflow-hidden"
-                    >
-                        <img
-                            className="w-full h-48 object-cover"
-                            src={employee.photo}
-                            alt={employee.name}
-                        />
-                        <div className="p-6">
-                            <h5 className="text-xl font-bold text-gray-800 mb-2">
-                                {employee.name}
-                            </h5>
-                            <p className="text-gray-600 mb-1">
-                                <strong>Email:</strong> {employee.email}
-                            </p>
-                            <p className="text-gray-600 mb-1">
-                                <strong>Designation:</strong> {employee.designation}
-                            </p>
-                            <p className="text-gray-600 mb-1">
-                                <strong>Salary:</strong> ${employee.salary}
-                            </p>
-                            <p className="text-gray-600">
-                                <strong>Bank Account:</strong> {employee.bank_account_no}
-                            </p>
+        <div className="py-10 bg-gray-100 min-h-screen">
+            <SectionTitle subHeading="Our Employees" heading="Employees" />
+            
+            <div className="max-w-7xl mx-auto flex justify-center">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full px-4">
+                    {employees.map(employee => (
+                        <div
+                            key={employee._id}
+                            className="bg-white shadow-lg rounded-2xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                        >
+                            <img
+                                className="w-full h-56 object-cover"
+                                src={employee.photo}
+                                alt={employee.name}
+                            />
+                            <div className="p-6">
+                                <h5 className="text-2xl font-semibold text-gray-800 mb-3">
+                                    {employee.name}
+                                </h5>
+                                <p className="text-gray-600 text-lg">
+                                    <strong>Designation:</strong> {employee.designation}
+                                </p>
+                                <p className="text-gray-600">
+                                    <strong>Email:</strong> {employee.email}
+                                </p>
+                                <p className="text-gray-600">
+                                    <strong>Salary:</strong> ${employee.salary}
+                                </p>
+                                <p className="text-gray-600">
+                                    <strong>Bank Account:</strong> {employee.bank_account_no}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         </div>
     );

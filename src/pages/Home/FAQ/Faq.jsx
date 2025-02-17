@@ -38,7 +38,7 @@ const Faq = () => {
                 heading='FAQ'
                 subHeading='Frequently Asked Questions'
             ></SectionTitle>
-            <div className="space-y-4">
+            <div className="space-y-4 max-w-6xl mx-auto">
                 {faqs.map((faq, index) => (
                     <div key={index} className="faq-item border rounded-lg">
                         <button
