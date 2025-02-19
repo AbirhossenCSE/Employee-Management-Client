@@ -23,6 +23,7 @@ import HrHome from "../pages/Dashboard/HR/HrHome";
 import EmployeeHome from "../pages/Dashboard/Employee/EmployeeHome";
 import AllEmployee from "../pages/Shared/AllUser/AllEmployee";
 import AdminRevew from "../pages/Dashboard/Employee/AdminRevew";
+import AboutUs from "../pages/AboutUs/AboutUs";
 
 export const router = createBrowserRouter([
     {
@@ -50,6 +51,10 @@ export const router = createBrowserRouter([
     {
         path: 'allEmployee',
         element: <AllEmployee></AllEmployee>
+    },
+    {
+        path: 'aboutUs',
+        element: <AboutUs></AboutUs>
     },
     {
         path: 'dashboard',

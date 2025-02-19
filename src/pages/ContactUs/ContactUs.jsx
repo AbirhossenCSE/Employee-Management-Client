@@ -24,7 +24,7 @@ const ContactUs = () => {
                         showConfirmButton: false,
                         timer: 1500,
                     });
-                    reset(); // Reset the form after successful submission
+                    reset();
                 } else {
                     Swal.fire({
                         position: 'top-end',

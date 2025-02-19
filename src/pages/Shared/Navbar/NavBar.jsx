@@ -23,6 +23,7 @@ const NavBar = () => {
             {[
                 { path: "/", label: "Home" },
                 { path: "/allEmployee", label: "All Employees" },
+                { path: "/aboutUs", label: "About Us" },
                 { path: "/contactUs", label: "Contact Us" },
                 { path: "/dashboard", label: "Dashboard" },
             ].map((link) => (
