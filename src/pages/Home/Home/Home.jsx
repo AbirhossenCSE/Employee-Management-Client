@@ -7,6 +7,7 @@ import { Helmet } from 'react-helmet';
 import Faq from '../FAQ/Faq';
 import KeyMetrics from '../KeyMetrics/KeyMetrics';
 import Newsletter from '../Newsletter/Newsletter';
+import LatestBlogs from '../Blog/LatestBlogs';
 
 const Home = () => {
     return (
@@ -16,6 +17,7 @@ const Home = () => {
             </Helmet>
             <Banner></Banner>
             <KeyMetrics></KeyMetrics>
+            <LatestBlogs></LatestBlogs>
             <Services></Services>
             <EmployeeList></EmployeeList>
             <Testimonials></Testimonials> 

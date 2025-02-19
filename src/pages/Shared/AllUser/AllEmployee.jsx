@@ -87,17 +87,17 @@ const AllEmployee = () => {
                                     key={user._id}
                                     className="bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
                                 >
-                                    <div className="bg-gradient-to-r from-gray-300 to-gray-500 h-32 flex justify-center items-center">
+                                    <div className="bg-gradient-to-r from-orange-200 to-orange-400 h-32 flex justify-center items-center">
                                         <img
                                             src={user.photo || 'https://via.placeholder.com/150'}
                                             alt={`${user.name}'s photo`}
                                             className="w-24 h-24 border-4 border-white rounded-full shadow-lg"
                                         />
                                     </div>
-                                    <div className="p-6 text-center">
+                                    <div className="p-6 text-">
                                         <h3 className="text-2xl font-bold text-gray-800">{user.name}</h3>
                                         <p className="text-gray-700 font-medium">{user.designation}</p>
-                                        <p className="text-gray-500 text-sm">{user.email}</p>
+                                        <p className="text-gray-500 text-sm">Email: {user.email}</p>
                                         <p className="text-gray-600 mt-2 font-semibold">
                                             Role: <span className="text-gray-700">{user.role.charAt(0).toUpperCase() + user.role.slice(1)}</span>
                                         </p>

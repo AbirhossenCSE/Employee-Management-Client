@@ -31,8 +31,8 @@ const NavBar = () => {
                     <Link
                         to={link.path}
                         className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === link.path
-                                ? "text-white  bg-gray-500"
-                                : "hover:text-gray-800"
+                                ? "text-white  bg-orange-400"
+                                : "hover:text-black"
                             }`}
                     >
                         {link.label}
