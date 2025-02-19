@@ -30,7 +30,7 @@ const Footer = () => {
 
                 </nav>
             </div>
-            <div className="bg-base-300 footer-center text-black p-4">
+            <div className="bg-base-300 footer-center p-4">
                 <aside>
                     <p>Copyright © {new Date().getFullYear()} - All right reserved by Smart Employee Ltd</p>
                 </aside>

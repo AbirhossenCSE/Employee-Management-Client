@@ -24,6 +24,7 @@ import EmployeeHome from "../pages/Dashboard/Employee/EmployeeHome";
 import AllEmployee from "../pages/Shared/AllUser/AllEmployee";
 import AdminRevew from "../pages/Dashboard/Employee/AdminRevew";
 import AboutUs from "../pages/AboutUs/AboutUs";
+import Error from "../pages/Error";
 
 export const router = createBrowserRouter([
     {
@@ -112,5 +113,9 @@ export const router = createBrowserRouter([
                 element: <PrivateRoute><PaymentHistory></PaymentHistory></PrivateRoute>
             },
         ]
+    },
+    {
+        path: '*',
+        element: <Error></Error>,
     },
 ]);
