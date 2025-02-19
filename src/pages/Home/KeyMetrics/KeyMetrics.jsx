@@ -37,22 +37,22 @@ const KeyMetrics = () => {
 
                 {/* Stats Section */}
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 mt-10 ">
-                    <div className="bg-white shadow-lg p-6 rounded-lg text-center transition duration-300 border hover:scale-105 border-gray-400">
+                    <div className="bg-white shadow-lg p-6 rounded-lg text-center transition duration-300 border hover:scale-110 border-gray-400">
                         <FaUsers className="text-orange-400 text-5xl mx-auto" />
                         <h3 className="text-3xl font-bold mt-3">{stats.employees}+</h3>
                         <p className="text-gray-600">Total Employees</p>
                     </div>
-                    <div className="bg-white shadow-lg p-6 rounded-lg text-center transition duration-300 border hover:scale-105 border-gray-400">
+                    <div className="bg-white shadow-lg p-6 rounded-lg text-center transition duration-300 border hover:scale-110 border-gray-400">
                         <FaProjectDiagram className="text-orange-400 text-5xl mx-auto" />
                         <h3 className="text-3xl font-bold mt-3">{stats.projects}+</h3>
                         <p className="text-gray-600">Successful Projects</p>
                     </div>
-                    <div className="bg-white shadow-lg p-6 rounded-lg text-center transition duration-300 border hover:scale-105 border-gray-400">
+                    <div className="bg-white shadow-lg p-6 rounded-lg text-center transition duration-300 border hover:scale-110 border-gray-400">
                         <FaSmile className="text-orange-400 text-5xl mx-auto" />
                         <h3 className="text-3xl font-bold mt-3">{stats.satisfaction}%</h3>
                         <p className="text-gray-600">Employee Satisfaction</p>
                     </div>
-                    <div className="bg-white shadow-lg p-6 rounded-lg text-center transition duration-300 border hover:scale-105 border-gray-400">
+                    <div className="bg-white shadow-lg p-6 rounded-lg text-center transition duration-300 border hover:scale-110 border-gray-400">
                         <FaBusinessTime className="text-orange-400 text-5xl mx-auto" />
                         <h3 className="text-3xl font-bold mt-3">{stats.years}+</h3>
                         <p className="text-gray-600">Years in Business</p>

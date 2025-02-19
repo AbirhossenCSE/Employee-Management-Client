@@ -6,6 +6,7 @@ import EmployeeList from '../EmployeeList/EmployeeList';
 import { Helmet } from 'react-helmet';
 import Faq from '../FAQ/Faq';
 import KeyMetrics from '../KeyMetrics/KeyMetrics';
+import Newsletter from '../Newsletter/Newsletter';
 
 const Home = () => {
     return (
@@ -18,7 +19,8 @@ const Home = () => {
             <Services></Services>
             <EmployeeList></EmployeeList>
             <Testimonials></Testimonials> 
-            <Faq></Faq>           
+            <Faq></Faq> 
+            <Newsletter></Newsletter>          
         </div>
     );
 };

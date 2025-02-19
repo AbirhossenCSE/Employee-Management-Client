@@ -48,7 +48,7 @@ const NavBar = () => {
                 {/* Logo Section */}
                 <Link to="/" className="flex ml-5 items-center gap-2">
                     <img src={logo} alt="Logo" className="w-10 h-10" />
-                    <span className="text-xl font-bold">
+                    <span className="text-2xl font-bold">
                         Smart<span className="text-orange-500">Employee</span>
                     </span>
                 </Link>
