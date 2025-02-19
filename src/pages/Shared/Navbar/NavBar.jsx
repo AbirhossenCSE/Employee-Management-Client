@@ -30,8 +30,8 @@ const NavBar = () => {
                     <Link
                         to={link.path}
                         className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === link.path
-                                ? "text-white font-semibold bg-gray-500"
-                                : "hover:text-gray-300"
+                                ? "text-white  bg-gray-500"
+                                : "hover:text-gray-800"
                             }`}
                     >
                         {link.label}
@@ -49,7 +49,7 @@ const NavBar = () => {
                 <Link to="/" className="flex ml-5 items-center gap-2">
                     <img src={logo} alt="Logo" className="w-10 h-10" />
                     <span className="text-xl font-bold">
-                        Smart<span className="text-red-600">Employee</span>
+                        Smart<span className="text-green-600">Employee</span>
                     </span>
                 </Link>
 
@@ -78,7 +78,7 @@ const NavBar = () => {
                             )}
                         </div>
                     ) : (
-                        <Link to="/login" className="text-white font-semibold border px-4 py-1 rounded-md hover:bg-white hover:text-green-800 transition">
+                        <Link to="/login" className="text-black font-semibold border px-4 py-1 rounded-md hover:bg-white hover:text-green-800 transition">
                             Sign In
                         </Link>
                     )}
