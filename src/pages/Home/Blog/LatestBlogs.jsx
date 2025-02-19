@@ -23,7 +23,7 @@ const LatestBlogs = () => {
     }, [axiosPublic]);
 
     return (
-        <section className="bg-gray-50 py-16 px-6">
+        <section className="bg-base-50 py-16 px-6">
             <div className="max-w-7xl mx-auto text-center">
                 <SectionTitle heading="Latest Blogs" subHeading="Stay updated with industry insights"></SectionTitle>
               

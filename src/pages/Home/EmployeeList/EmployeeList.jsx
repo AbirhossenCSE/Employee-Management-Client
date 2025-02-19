@@ -7,7 +7,7 @@ const EmployeeList = () => {
     const employees = users.filter(item => item.role === 'Employee');
 
     return (
-        <div className="py-10 bg-gray-100 min-h-screen">
+        <div className="py-10 bg-base-100 min-h-screen">
             <SectionTitle subHeading="Our Employees" heading="Employees" />
             
             <div className="max-w-7xl mx-auto flex justify-center">

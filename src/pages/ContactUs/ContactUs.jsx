@@ -48,14 +48,14 @@ const ContactUs = () => {
     };
 
     return (
-        <section className="min-h-screen bg-gray-100 py-16 px-6">
+        <section className="min-h-screen bg-base-100 py-16 px-6">
             <Helmet>
                 <title>SmartEmployee | Contact Us</title>
             </Helmet>
 
-            <div className="max-w-7xl mx-auto mt-10 grid grid-cols-1 md:grid-cols-2 gap-12 bg-white shadow-lg rounded-lg overflow-hidden">
+            <div className="max-w-7xl mx-auto mt-10 grid grid-cols-1 md:grid-cols-2 gap-12 bg-base-100 shadow-lg rounded-lg overflow-hidden">
                 {/* Contact Information */}
-                <div className="bg-orange-400 text-white p-8 flex flex-col justify-center">
+                <div className="  p-8 flex flex-col justify-center">
                     <h2 className="text-3xl font-bold mb-4">Get in Touch</h2>
                     <p className="text-lg mb-6">
                         Have questions? Reach out to us and we'll get back to you as soon as possible.
@@ -82,7 +82,7 @@ const ContactUs = () => {
                     <h2 className="text-3xl font-semibold text-orange-400 text-center mb-6">Contact Us</h2>
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                         <div>
-                            <label className="block text-lg font-medium text-gray-700 mb-2" htmlFor="name">
+                            <label className="block text-lg font-medium text-gray-500 mb-2" htmlFor="name">
                                 Name
                             </label>
                             <input
@@ -96,7 +96,7 @@ const ContactUs = () => {
                         </div>
 
                         <div>
-                            <label className="block text-lg font-medium text-gray-700 mb-2" htmlFor="email">
+                            <label className="block text-lg font-medium text-gray-500 mb-2" htmlFor="email">
                                 Email Address
                             </label>
                             <input
@@ -110,7 +110,7 @@ const ContactUs = () => {
                         </div>
 
                         <div>
-                            <label className="block text-lg font-medium text-gray-700 mb-2" htmlFor="message">
+                            <label className="block text-lg font-medium text-gray-500 mb-2" htmlFor="message">
                                 Your Message
                             </label>
                             <textarea

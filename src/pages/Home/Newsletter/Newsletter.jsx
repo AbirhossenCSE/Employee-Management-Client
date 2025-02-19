@@ -43,7 +43,7 @@ const Newsletter = () => {
 
     return (
         <div>
-            <div className="max-w-full mx-auto py-16 px-4 bg-gray-100 rounded-lg shadow-md text-center">
+            <div className="max-w-full mx-auto py-16 px-4 bg-base-100 rounded-lg shadow-md text-center">
                 <motion.h2
                     className="text-center text-3xl font-bold text-gray-500 m-4"
                     initial={{ opacity: 0, y: -50 }}

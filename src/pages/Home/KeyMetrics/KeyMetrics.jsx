@@ -30,7 +30,7 @@ const KeyMetrics = () => {
     }, [axiosPublic]);
 
     return (
-        <div className="bg-gray-100 py-16 px-6">
+        <div className="bg-base-100 py-16 px-6">
             <div className="max-w-7xl mx-auto text-center">
 
                 <SectionTitle heading="Metrics" subHeading="Our company’s performance"></SectionTitle>

@@ -19,7 +19,7 @@ const Testimonials = () => {
     }, [])
 
     return (
-        <section className='mt-20 bg-gray-100'>
+        <section className='mt-20 bg-base-100'>
             <SectionTitle
                 subHeading='What Our Client Say'
                 heading={'Testimonials'}

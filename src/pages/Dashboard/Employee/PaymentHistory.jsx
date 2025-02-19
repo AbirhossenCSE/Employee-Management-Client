@@ -35,7 +35,7 @@ const PaymentHistory = () => {
             <div className="overflow-x-auto">
                 <table className="table-auto w-full border-collapse border border-gray-200">
                     <thead>
-                        <tr className="bg-orange-400">
+                        <tr className="bg-orange-400 text-white">
                             <th className="border px-4 py-2">Month</th>
                             <th className="border px-4 py-2">Year</th>
                             <th className="border px-4 py-2">Amount</th>

@@ -151,7 +151,7 @@ const EmployeeHr = () => {
             <h2 className="text-3xl font-bold text-center mb-6">Employee Management</h2>
             <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">
-                    <thead className="bg-orange-400">
+                    <thead className="bg-orange-400 text-white">
                         {table.getHeaderGroups().map((headerGroup) => (
                             <tr key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => (

@@ -41,7 +41,7 @@ const Dashboard = () => {
 
             {/* Dashboard Sidebar */}
             <div
-                className={`fixed sm:relative z-40 bg-orange-400 min-h-screen w-64 transition-transform duration-300 ${
+                className={`fixed sm:relative z-40 bg-orange-400 text-white min-h-screen w-64 transition-transform duration-300 ${
                     isSidebarOpen ? "translate-x-0" : "-translate-x-full"
                 } sm:translate-x-0`}
             >

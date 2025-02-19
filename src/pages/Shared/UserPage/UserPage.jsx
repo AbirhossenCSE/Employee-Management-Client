@@ -27,7 +27,7 @@ const UserPage = () => {
         <div className="p-6">
             <h1 className="text-4xl text-center font-bold mb-4">Welcome Back, <span className='text-red-500'>{user?.displayName || 'User'}!</span></h1>
             {userInfo ? (
-                <div className='flex items-center gap-4 bg-gray-50 p-6 py-4 shadow-lg'>
+                <div className='flex items-center gap-4 bg-base-50 p-6 py-4 shadow-lg'>
                     <div className='w-2/12'>
                         <img src={userInfo.photo} className='w-full space-y-2 mt-10 ' alt={userInfo.name} />
                     </div>

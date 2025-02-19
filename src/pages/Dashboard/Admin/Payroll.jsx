@@ -26,7 +26,7 @@ const Payroll = () => {
             <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">
                     <thead>
-                        <tr className="bg-orange-400">
+                        <tr className="bg-orange-400 text-white">
                             <th>Name</th>
                             <th>Salary</th>
                             <th>Month & Year</th>

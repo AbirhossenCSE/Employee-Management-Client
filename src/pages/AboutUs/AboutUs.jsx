@@ -3,6 +3,7 @@ import { FaFacebook, FaTwitter, FaYoutube, FaUsers, FaMapMarkerAlt } from 'react
 import useAxiosPublic from '../../hooks/useAxiosPublic';
 import NavBar from '../Shared/Navbar/NavBar';
 import { Helmet } from 'react-helmet';
+import Footer from '../Shared/Footer/Footer';
 
 const AboutUs = () => {
     const axiosPublic = useAxiosPublic();
@@ -15,16 +16,16 @@ const AboutUs = () => {
     }, [axiosPublic]);
 
     return (
-        <div className="bg-gray-50 min-h-screen">
+        <div className="bg-base-50 min-h-screen">
             <NavBar />
             <Helmet>
                 <title>SmartEmployee | About Us</title>
             </Helmet>
             
             <div className="max-w-6xl mx-auto mt-10 px-6 py-16 text-center">
-                <h2 className="text-5xl font-extrabold text-orange-500 mb-4">About <span className="text-gray-900">Us</span></h2>
-                <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-                    Welcome to <span className="font-semibold text-gray-800">SmartEmployee</span>, your trusted platform for managing employee workflow, salaries, contracts, and updates. We streamline HR processes and boost workplace efficiency.
+                <h2 className="text-5xl font-extrabold text-orange-500 mb-4">About <span className="text-gray-500">Us</span></h2>
+                <p className="text-lg text-gray-500 max-w-3xl mx-auto">
+                    Welcome to <strong>SmartEmployee</strong>, your trusted platform for managing employee workflow, salaries, contracts, and updates. We streamline HR processes and boost workplace efficiency.
                 </p>
             </div>
             
@@ -42,7 +43,7 @@ const AboutUs = () => {
             </div>
 
             {/* Company Info & Map Section */}
-            <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto px-6">
+            <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto px-6 mb-8">
                 {/* Company Details */}
                 <div className="bg-white shadow-md p-8 rounded-lg text-left">
                     <h3 className="text-3xl font-semibold text-orange-500 mb-6">Company Details</h3>
@@ -52,7 +53,7 @@ const AboutUs = () => {
                 </div>
                 
                 {/* Live Map */}
-                <div>
+                <div className='bg-white shadow-md p-8 rounded-lg'>
                     <h3 className="text-3xl font-semibold text-orange-500 mb-6">Find Us Here</h3>
                     <div className="rounded-lg overflow-hidden shadow-md h-64">
                         <iframe
@@ -66,6 +67,7 @@ const AboutUs = () => {
                     </div>
                 </div>
             </div>
+            <Footer></Footer>
         </div>
     );
 };
