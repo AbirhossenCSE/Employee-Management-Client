@@ -10,7 +10,7 @@ const AllEmployee = () => {
     const [filteredUsers, setFilteredUsers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [searchQuery, setSearchQuery] = useState('');
-    const [sortOrder, setSortOrder] = useState('asc'); // Default sorting order
+    const [sortOrder, setSortOrder] = useState('asc');
 
     // Fetch all users on component mount
     useEffect(() => {
@@ -54,7 +54,7 @@ const AllEmployee = () => {
 
             <div className="max-w-8xl mx-auto px-6 py-12">
                 <h2 className="text-4xl font-extrabold text-center text-gray-800 my-10">
-                    Meet Our <span className="text-green-400">Employees</span>
+                    Meet Our <span className="text-orange-400">Employees</span>
                 </h2>
 
                 {/* Search & Sort Controls */}
@@ -62,13 +62,13 @@ const AllEmployee = () => {
                     <input
                         type="text"
                         placeholder="Search employee by name..."
-                        className="px-4 py-2 w-full sm:w-1/3 border border-green-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-400"
+                        className="px-4 py-2 w-full sm:w-1/3 border border-orange-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
                     <button
                         onClick={handleSort}
-                        className="px-4 py-2 lg:mr-16 bg-green-500 text-white rounded-lg hover:bg-green-600 transition "
+                        className="px-4 py-2 lg:mr-16 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition "
                     >
                         Sort by Salary {sortOrder === 'asc' ? '⬆' : '⬇'}
                     </button>

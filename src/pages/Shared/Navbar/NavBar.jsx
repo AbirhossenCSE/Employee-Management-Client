@@ -49,12 +49,12 @@ const NavBar = () => {
                 <Link to="/" className="flex ml-5 items-center gap-2">
                     <img src={logo} alt="Logo" className="w-10 h-10" />
                     <span className="text-xl font-bold">
-                        Smart<span className="text-green-600">Employee</span>
+                        Smart<span className="text-orange-500">Employee</span>
                     </span>
                 </Link>
 
                 {/* Desktop Navigation */}
-                <ul className="hidden lg:flex space-x-6 text-lg font-medium">{navLinks}</ul>
+                <ul className="hidden lg:flex space-x-6 font-medium">{navLinks}</ul>
 
                 {/* User Profile or Sign In */}
                 <div className="flex mr-5 items-center space-x-4">

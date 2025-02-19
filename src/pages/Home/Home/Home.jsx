@@ -5,6 +5,7 @@ import Testimonials from '../Testimonials/Testimonials';
 import EmployeeList from '../EmployeeList/EmployeeList';
 import { Helmet } from 'react-helmet';
 import Faq from '../FAQ/Faq';
+import KeyMetrics from '../KeyMetrics/KeyMetrics';
 
 const Home = () => {
     return (
@@ -13,6 +14,7 @@ const Home = () => {
                 <title> SmartEmployee | Home</title>
             </Helmet>
             <Banner></Banner>
+            <KeyMetrics></KeyMetrics>
             <Services></Services>
             <EmployeeList></EmployeeList>
             <Testimonials></Testimonials> 
