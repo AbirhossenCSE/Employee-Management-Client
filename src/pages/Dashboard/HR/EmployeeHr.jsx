@@ -7,7 +7,6 @@ import {
     flexRender,
 } from "@tanstack/react-table";
 import { useNavigate } from "react-router-dom";
-
 import Swal from "sweetalert2";
 import { FaCheck, FaTimes } from "react-icons/fa";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -125,11 +124,9 @@ const EmployeeHr = () => {
                         >
                             Details
                         </button>
-
                     );
                 },
             },
-
         ],
         []
     );
@@ -142,8 +139,13 @@ const EmployeeHr = () => {
         getPaginationRowModel: getPaginationRowModel(),
     });
 
+    // **Loading State: Show Spinner While Data Fetching**
     if (isLoading) {
-        return <p>Loading employees...</p>;
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <div className="w-12 h-12 border-4 border-dashed border-orange-400 rounded-full animate-spin"></div>
+            </div>
+        );
     }
 
     return (

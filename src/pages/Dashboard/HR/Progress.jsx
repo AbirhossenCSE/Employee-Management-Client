@@ -11,7 +11,7 @@ const Progress = () => {
     const [selectedEmployee, setSelectedEmployee] = useState("");
     const [selectedMonth, setSelectedMonth] = useState(new Date());
 
-    const { data: records = [] } = useQuery({
+    const { data: records = [], isLoading } = useQuery({
         queryKey: ["allWorkRecords"],
         queryFn: async () => {
             const res = await axiosSecure.get("/allWorkRecords");
@@ -40,9 +40,18 @@ const Progress = () => {
         });
     }, [records, selectedEmployee, selectedMonth]);
 
+    // **Loading State: Show Spinner While Data Fetching**
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <div className="w-12 h-12 border-4 border-dashed border-orange-400 rounded-full animate-spin"></div>
+            </div>
+        );
+    }
+
     return (
         <div>
-            <h2 className="text-3xl text-center font-bold mb-6">All Employe Works</h2>
+            <h2 className="text-3xl text-center font-bold mb-6">All Employee Works</h2>
             <div className="flex items-center gap-4 mb-6">
                 <select
                     value={selectedEmployee}
