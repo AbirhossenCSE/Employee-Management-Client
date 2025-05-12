@@ -42,11 +42,11 @@ export const router = createBrowserRouter([
             {
                 path: 'login',
                 element: <Login></Login>,
-              },
-              {
+            },
+            {
                 path: 'signup',
                 element: <SignUp></SignUp>
-              },
+            },
         ]
     },
     {
@@ -80,8 +80,8 @@ export const router = createBrowserRouter([
             },
             {
                 path: 'payment',
-                element: <AdminRoute><Payment></Payment></AdminRoute> ,
-              },
+                element: <AdminRoute><Payment></Payment></AdminRoute>,
+            },
             // Hr
             {
                 path: 'hrHome',

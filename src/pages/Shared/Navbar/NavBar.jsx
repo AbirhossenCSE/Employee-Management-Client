@@ -3,16 +3,33 @@ import { Link, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../../providers/AuthProviders';
 import { FaBars, FaMoon } from 'react-icons/fa';
 import { IoMdClose } from 'react-icons/io';
-import { MdDarkMode, MdLightMode } from 'react-icons/md'; // Icons for dark/light mode
-import logo from '../../../assets/logo/logo.jpg';
 import { FiSun } from 'react-icons/fi';
+import logo from '../../../assets/logo/logo.jpg';
 
 const NavBar = () => {
     const { user, logOut } = useContext(AuthContext);
     const [showLogout, setShowLogout] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [theme, setTheme] = useState('light'); // State for dark/light mode
+    const [theme, setTheme] = useState('light');
+    const [showNavbar, setShowNavbar] = useState(true);
+    const [lastScrollY, setLastScrollY] = useState(0);
     const location = useLocation();
+
+    // Scroll listener to show/hide navbar
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            if (currentScrollY < 100 || currentScrollY < lastScrollY) {
+                setShowNavbar(true);
+            } else {
+                setShowNavbar(false);
+            }
+            setLastScrollY(currentScrollY);
+        };
+
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, [lastScrollY]);
 
     // Toggle dark/light mode
     const toggleTheme = () => {
@@ -27,33 +44,47 @@ const NavBar = () => {
             .catch(() => console.log('Sign out failed'));
     };
 
-    // Navigation Links with Active Styling
     const navLinks = (
         <>
             <li>
-                <Link to="/" className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/" ? "text-white bg-orange-400" : "hover:text-black dark:hover:text-white"}`}>
+                <Link
+                    to="/"
+                    className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/" ? "text-white bg-orange-400" : "hover:text-orange-400"}`}
+                >
                     Home
                 </Link>
             </li>
             <li>
-                <Link to="/aboutUs" className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/aboutUs" ? "text-white bg-orange-400" : "hover:text-black dark:hover:text-white"}`}>
+                <Link
+                    to="/aboutUs"
+                    className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/aboutUs" ? "text-white bg-orange-400" : "hover:text-orange-400"}`}
+                >
                     About Us
                 </Link>
             </li>
             <li>
-                <Link to="/contactUs" className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/contactUs" ? "text-white bg-orange-400" : "hover:text-black dark:hover:text-white"}`}>
+                <Link
+                    to="/contactUs"
+                    className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/contactUs" ? "text-white bg-orange-400" : "hover:text-orange-400"}`}
+                >
                     Contact Us
                 </Link>
             </li>
             {user && (
                 <>
                     <li>
-                        <Link to="/allEmployee" className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/allEmployee" ? "text-white bg-orange-400" : "hover:text-black dark:hover:text-white"}`}>
+                        <Link
+                            to="/allEmployee"
+                            className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/allEmployee" ? "text-white bg-orange-400" : "hover:text-orange-400"}`}
+                        >
                             All Employees
                         </Link>
                     </li>
                     <li>
-                        <Link to="/dashboard" className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/dashboard" ? "text-white bg-orange-400" : "hover:text-black dark:hover:text-white"}`}>
+                        <Link
+                            to="/dashboard"
+                            className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/dashboard" ? "text-white bg-orange-400" : "hover:text-orange-400"}`}
+                        >
                             Dashboard
                         </Link>
                     </li>
@@ -63,13 +94,16 @@ const NavBar = () => {
     );
 
     return (
-        <nav className="w-full fixed top-0 left-0 z-50 bg-opacity-90 shadow-md bg-base-300 dark:bg-gray-900 dark:text-white">
+        <nav
+            className={`w-full fixed top-0 left-0 z-50 transition-transform duration-300 ${showNavbar ? "translate-y-0" : "-translate-y-full"
+                } bg-opacity-90 shadow-md bg-base-300 dark:bg-gray-900 dark:text-white`}
+        >
             <div className="max-w-8xl mx-auto flex items-center justify-between px-6 lg:px-12 py-3">
 
-                {/* Logo Section */}
+                {/* Logo */}
                 <Link to="/" className="flex ml-5 items-center gap-2">
                     <img src={logo} alt="Logo" className="w-10 h-10" />
-                    <span className="text-2xl font-bold">
+                    <span className="text-2xl font-bold hidden md:flex">
                         Smart<span className="text-orange-500">Employee</span>
                     </span>
                 </Link>
@@ -108,7 +142,7 @@ const NavBar = () => {
                             )}
                         </div>
                     ) : (
-                        <Link to="/login" className="text-black bg-gray-50 font-semibold border px-4 py-1 rounded-md hover:bg-white transition">
+                        <Link to="/login" className="text-black bg-gray-50 font-semibold border px-4 py-1 rounded-md hover:bg-white transition dark:text-white dark:bg-gray-800 dark:hover:bg-gray-700">
                             Sign In
                         </Link>
                     )}
@@ -120,13 +154,14 @@ const NavBar = () => {
                 </div>
             </div>
 
-            {/* Mobile Navigation Menu */}
+            {/* Mobile Navigation Backdrop */}
             <div
                 className={`lg:hidden fixed top-0 left-0 w-full h-screen bg-black bg-opacity-50 transition-all duration-300 ${isMenuOpen ? "opacity-100 visible" : "opacity-0 invisible"
                     }`}
                 onClick={() => setIsMenuOpen(false)}
             ></div>
 
+            {/* Mobile Sidebar */}
             <div
                 className={`lg:hidden fixed top-0 left-0 h-screen w-64 bg-base-300 shadow-lg transform ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
                     } transition-transform duration-300 dark:bg-gray-900 dark:text-white`}
