@@ -77,7 +77,7 @@ const Progress = () => {
             <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">
                     <thead>
-                        <tr className="bg-orange-400 text-white">
+                        <tr className="bg-gray-700 text-white">
                             <th>#</th>
                             <th>Employee</th>
                             <th>Task</th>

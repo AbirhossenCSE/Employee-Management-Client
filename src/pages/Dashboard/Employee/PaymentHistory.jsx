@@ -7,7 +7,7 @@ const PaymentHistory = () => {
     const [payments, setPayments] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);
     const [totalPages, setTotalPages] = useState(1);
-    const [isLoading, setIsLoading] = useState(true); // Loading state
+    const [isLoading, setIsLoading] = useState(true);
     const itemsPerPage = 5;
 
     const axiosSecure = useAxiosSecure();
@@ -15,7 +15,7 @@ const PaymentHistory = () => {
 
     useEffect(() => {
         const fetchPayments = async () => {
-            setIsLoading(true); // Start loading
+            setIsLoading(true);
             try {
                 const response = await axiosSecure.get(
                     `/payment-history?page=${currentPage}&limit=${itemsPerPage}&email=${user.email}`
@@ -25,7 +25,7 @@ const PaymentHistory = () => {
             } catch (err) {
                 console.error("Failed to fetch payment history", err);
             } finally {
-                setIsLoading(false); // Stop loading
+                setIsLoading(false); 
             }
         };
         fetchPayments();
@@ -49,7 +49,7 @@ const PaymentHistory = () => {
                     <div className="overflow-x-auto">
                         <table className="table-auto w-full border-collapse border border-gray-200">
                             <thead>
-                                <tr className="bg-orange-400 text-white">
+                                <tr className="bg-gray-800 text-white">
                                     <th className="border px-4 py-2">Month</th>
                                     <th className="border px-4 py-2">Year</th>
                                     <th className="border px-4 py-2">Amount</th>

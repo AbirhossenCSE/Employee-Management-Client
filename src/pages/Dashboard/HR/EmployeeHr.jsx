@@ -105,7 +105,7 @@ const EmployeeHr = () => {
                     return (
                         <button
                             onClick={() => handleAddPayable(employeeId)}
-                            className="btn btn-sm btn-primary"
+                            className="btn btn-sm btn-neutral"
                         >
                             Pay
                         </button>
@@ -120,7 +120,7 @@ const EmployeeHr = () => {
                     return (
                         <button
                             onClick={() => navigate(`details/${employeeId}`)}
-                            className="btn btn-info"
+                            className="btn btn-neutral"
                         >
                             Details
                         </button>
@@ -153,7 +153,7 @@ const EmployeeHr = () => {
             <h2 className="text-3xl font-bold text-center mb-6">Employee Management</h2>
             <div className="overflow-x-auto">
                 <table className="table table-zebra w-full">
-                    <thead className="bg-orange-400 text-white">
+                    <thead className="bg-gray-800 text-white">
                         {table.getHeaderGroups().map((headerGroup) => (
                             <tr key={headerGroup.id}>
                                 {headerGroup.headers.map((header) => (

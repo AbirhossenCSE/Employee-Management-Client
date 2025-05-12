@@ -123,7 +123,7 @@ const WorkSheet = () => {
                     className="input input-bordered"
                 />
 
-                <button type="button" onClick={handleAddTask} className="btn bg-orange-400">
+                <button type="button" onClick={handleAddTask} className="btn btn-neutral">
                     Add New Work
                 </button>
             </form>
@@ -132,7 +132,7 @@ const WorkSheet = () => {
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
                     <thead>
-                        <tr className="bg-orange-400 text-white">
+                        <tr className="bg-gray-800 text-white">
                             <th>#</th>
                             <th>Task</th>
                             <th>Hours Worked</th>
@@ -149,13 +149,13 @@ const WorkSheet = () => {
                                 <td>{new Date(task.date).toLocaleDateString()}</td>
                                 <td>
                                     <button
-                                        className="btn btn-sm btn-warning"
+                                        className="btn btn-sm "
                                         onClick={() => setEditData(task)}
                                     >
                                         🖊
                                     </button>
                                     <button
-                                        className="btn btn-sm btn-error ml-2"
+                                        className="btn btn-sm  ml-2"
                                         onClick={() => deleteMutation.mutate(task._id)}
                                     >
                                         ❌

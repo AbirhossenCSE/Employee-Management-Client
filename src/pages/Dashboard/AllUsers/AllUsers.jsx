@@ -1,17 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { MdAdminPanelSettings } from 'react-icons/md';
 import { FaGripfire, FaUserTie } from 'react-icons/fa';
 import Swal from 'sweetalert2';
 import useAxiosSecure from '../../../hooks/useAxiosSecure';
+import ClipLoader from 'react-spinners/ClipLoader';
 
 const AllUsers = () => {
     const axiosSecure = useAxiosSecure();
     const [showModal, setShowModal] = useState(false);
     const [selectedUser, setSelectedUser] = useState(null);
     const [view, setView] = useState('table');
+    const [currentPage, setCurrentPage] = useState(1);
+    const [loadingPage, setLoadingPage] = useState(false);
+    const itemsPerPage = 6;
 
-    const { data: users = [], refetch } = useQuery({
+    const { data: users = [], refetch, isLoading } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
             const res = await axiosSecure.get('/users');
@@ -19,62 +23,52 @@ const AllUsers = () => {
         }
     });
 
-    // Handle role update to HR
-    const handleMakeHR = (user) => {
-        axiosSecure.patch(`/users/hr/${user._id}`)
-            .then(res => {
-                if (res.data.modifiedCount > 0) {
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: `${user.name} is now an HR!`,
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    refetch();
-                }
-            });
+    const totalPages = Math.ceil(users.length / itemsPerPage);
+    const startIndex = (currentPage - 1) * itemsPerPage;
+    const paginatedUsers = users.slice(startIndex, startIndex + itemsPerPage);
+
+    const changePage = (pageNumber) => {
+        setLoadingPage(true);
+        setTimeout(() => {
+            setCurrentPage(pageNumber);
+            setLoadingPage(false);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 500); // Simulate load delay
     };
 
-    // Handle role update to Admin
+    const handleMakeHR = (user) => {
+        axiosSecure.patch(`/users/hr/${user._id}`).then(res => {
+            if (res.data.modifiedCount > 0) {
+                Swal.fire("Updated!", `${user.name} is now an HR!`, "success");
+                refetch();
+            }
+        });
+    };
+
     const handleMakeAdmin = (user) => {
-        axiosSecure.patch(`/users/admin/${user._id}`)
-            .then(res => {
-                if (res.data.modifiedCount > 0) {
-                    Swal.fire({
-                        position: "top-end",
-                        icon: "success",
-                        title: `${user.name} is now an Admin!`,
-                        showConfirmButton: false,
-                        timer: 1500
-                    });
-                    refetch();
-                }
-            });
+        axiosSecure.patch(`/users/admin/${user._id}`).then(res => {
+            if (res.data.modifiedCount > 0) {
+                Swal.fire("Updated!", `${user.name} is now an Admin!`, "success");
+                refetch();
+            }
+        });
     };
 
     const handleFire = (user) => {
         Swal.fire({
             title: "Are you sure?",
-            text: "This action will mark the user as 'Fired'.",
+            text: "You want to fire this user.",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, fire them!"
+            confirmButtonText: "Yes, fire!",
         }).then((result) => {
             if (result.isConfirmed) {
-                axiosSecure.patch(`/users/fire/${user._id}`)
-                    .then(res => {
-                        if (res.data.modifiedCount > 0) {
-                            Swal.fire({
-                                title: "Fired!",
-                                text: `${user.name} has been fired.`,
-                                icon: "success"
-                            });
-                            refetch();
-                        }
-                    });
+                axiosSecure.patch(`/users/fire/${user._id}`).then(res => {
+                    if (res.data.modifiedCount > 0) {
+                        Swal.fire("Fired!", `${user.name} has been fired.`, "success");
+                        refetch();
+                    }
+                });
             }
         });
     };
@@ -84,178 +78,155 @@ const AllUsers = () => {
         setShowModal(true);
     };
 
-    // Handle salary update (Only allow salary increase)
     const handleSalaryChange = () => {
-        const salary = document.getElementById("salaryInput").value;
-        if (selectedUser) {
-            const newSalary = parseFloat(salary);
-            if (newSalary >= selectedUser.salary) {
-                axiosSecure.patch(`/users/salary/${selectedUser._id}`, { salary: newSalary })
-                    .then(res => {
-                        if (res.data.message === 'Salary updated successfully') {
-                            Swal.fire({
-                                position: "top-end",
-                                icon: "success",
-                                title: `Salary updated for ${selectedUser.name}`,
-                                showConfirmButton: false,
-                                timer: 1500
-                            }).then(() => {
-                                setShowModal(false);
-                                refetch();
-                            });
-                        }
-                    });
-            } else {
-                Swal.fire({
-                    title: 'Error!',
-                    text: 'Salary cannot be decreased.',
-                    icon: 'error',
-                    confirmButtonText: 'OK'
-                });
-            }
+        const salary = parseFloat(document.getElementById("salaryInput").value);
+        if (salary >= selectedUser.salary) {
+            axiosSecure.patch(`/users/salary/${selectedUser._id}`, { salary }).then(res => {
+                if (res.data.message === 'Salary updated successfully') {
+                    Swal.fire("Updated!", "Salary has been updated.", "success");
+                    setShowModal(false);
+                    refetch();
+                }
+            });
+        } else {
+            Swal.fire("Error!", "Salary cannot be decreased.", "error");
         }
     };
+
+    if (isLoading) {
+        return (
+            <div className="flex justify-center items-center h-64">
+                <ClipLoader size={50} color="#f97316" />
+            </div>
+        );
+    }
 
     return (
         <div>
             <div className="flex justify-between mb-4">
-                <h2 className="text-3xl text-orange-400 font-bold">All Employees</h2>
-                <h2 className="text-3xl text-orange-400 font-bold">Total Employees: {users.length}</h2>
-                {/* Toggle Button */}
+                <h2 className="text-3xl font-bold">All Employees</h2>
+                <h2 className="text-3xl font-bold">Total: {users.length}</h2>
                 <button
-                    onClick={() => setView(view === 'table' ? 'card' : 'table')}
-                    className="btn bg-orange-400"
+                    onClick={() => {
+                        setView(view === 'table' ? 'card' : 'table');
+                        setCurrentPage(1);
+                    }}
+                    className="btn btn-neutral text-white"
                 >
                     {view === 'table' ? 'Switch to Card View' : 'Switch to Table View'}
                 </button>
             </div>
 
-            {view === 'table' ? (
-                <div className="overflow-x-auto">
-                    <table className="table table-zebra">
-                        <thead className="bg-orange-400 text-white">
-                            <tr>
-                                <th>#</th>
-                                <th>Employee Name</th>
-                                <th>Email</th>
-                                <th>Role</th>
-                                <th>Make Admin</th>
-                                <th>Make HR</th>
-                                <th>Fire</th>
-                                <th>Adjust Salary</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {users.map((user, index) => (
-                                <tr key={user._id}>
-                                    <th>{index + 1}</th>
-                                    <td>{user.name}</td>
-                                    <td>{user.email}</td>
-                                    <td>{user.role}</td>
-                                    <td>
-                                        {user.role !== 'admin' && (
-                                            <button
-                                                onClick={() => handleMakeAdmin(user)}
-                                                className="btn btn-neutral flex items-center gap-2"
-                                            >
-                                                <MdAdminPanelSettings className="text-white" /> Make Admin
-                                            </button>
-                                        )}
-                                    </td>
-                                    <td>
-                                        {user.role === 'Employee' && (
-                                            <button
-                                                onClick={() => handleMakeHR(user)}
-                                                className="btn btn-secondary flex items-center gap-2"
-                                            >
-                                                <FaUserTie className="text-white" /> Make HR
-                                            </button>
-                                        )}
-                                    </td>
-                                    <td>
-                                        {user.status !== 'fired' ? (
-                                            <button
-                                                onClick={() => handleFire(user)}
-                                                className="btn btn-danger flex items-center gap-2"
-                                            >
-                                                <FaGripfire className="text-red-700 text-2xl" />
-                                            </button>
-                                        ) : (
-                                            <span className="text-gray-500">Fired</span>
-                                        )}
-                                    </td>
-                                    <td>
-                                        <button
-                                            onClick={() => openSalaryModal(user)}
-                                            className="btn btn-warning flex items-center gap-2"
-                                        >
-                                            Adjust Salary
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+            {loadingPage ? (
+                <div className="flex justify-center items-center h-64">
+                    <ClipLoader size={50} color="#f97316" />
                 </div>
             ) : (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {users.map((user, index) => (
-                        <div key={user._id} className="card bg-gray-200 shadow-lg p-4">
-                            <div className='mx-auto text-center py-2'>
-                                <h3 className="text-2xl font-semibold">{user.name}</h3>
-                                <p>{user.email}</p>
-                                <p>Role: {user.role}</p>
-                            </div>
-                            <div className="mt-4 p-4">
-                                <button
-                                    onClick={() => handleMakeAdmin(user)}
-                                    className="btn btn-neutral mb-2 mx-1"
-                                >
-                                    <MdAdminPanelSettings /> Make Admin
-                                </button>
-                                <button
-                                    onClick={() => handleMakeHR(user)}
-                                    className="btn btn-neutral mb-2 mx-1"
-                                >
-                                    <FaUserTie /> Make HR
-                                </button>
-                                <button
-                                    onClick={() => handleFire(user)}
-                                    className="btn btn-neutral mb-2 mx-1"
-                                >
-                                    <FaGripfire /> Fire
-                                </button>
-                                <button
-                                    onClick={() => openSalaryModal(user)}
-                                    className="btn btn-neutral mx-1"
-                                >
-                                    Adjust Salary
-                                </button>
-                            </div>
+                <>
+                    {view === 'table' ? (
+                        <div className="overflow-x-auto">
+                            <table className="table table-zebra">
+                                <thead className="bg-gray-800 text-white">
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Role</th>
+                                        <th>Admin</th>
+                                        <th>HR</th>
+                                        <th>Fire</th>
+                                        <th>Salary</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {paginatedUsers.map((user, index) => (
+                                        <tr key={user._id}>
+                                            <td>{startIndex + index + 1}</td>
+                                            <td>{user.name}</td>
+                                            <td>{user.email}</td>
+                                            <td>{user.role}</td>
+                                            <td>
+                                                {user.role !== 'admin' && (
+                                                    <button onClick={() => handleMakeAdmin(user)} className="btn btn-sm btn-neutral">
+                                                        <MdAdminPanelSettings /> Make Admin
+                                                    </button>
+                                                )}
+                                            </td>
+                                            <td>
+                                                {user.role === 'Employee' && (
+                                                    <button onClick={() => handleMakeHR(user)} className="btn btn-sm btn-neutral">
+                                                        <FaUserTie /> Make HR
+                                                    </button>
+                                                )}
+                                            </td>
+                                            <td>
+                                                {user.status !== 'fired' ? (
+                                                    <button onClick={() => handleFire(user)} className="btn btn-sm text-red-600">
+                                                        <FaGripfire />
+                                                    </button>
+                                                ) : (
+                                                    <span className="text-gray-500">Fired</span>
+                                                )}
+                                            </td>
+                                            <td>
+                                                <button onClick={() => openSalaryModal(user)} className="btn btn-sm btn-neutral">Adjust Salary</button>
+                                            </td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
                         </div>
-                    ))}
-                </div>
+                    ) : (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {paginatedUsers.map((user) => (
+                                <div key={user._id} className="card bg-base-300 p-4 shadow">
+                                    <div className='p-2'> 
+                                        <h3 className="text-2xl font-semibold mb-2 ">{user.name}</h3>
+                                        <p>Email:{user.email}</p>
+                                        <p>Role: {user.role}</p>
+                                        <p>Role: {user.designation}</p>
+                                    </div>
+                                    <div className="flex flex-wrap mt-2 gap-2">
+                                        <button onClick={() => handleMakeAdmin(user)} className="btn btn-sm btn-neutral"><MdAdminPanelSettings /></button>
+                                        <button onClick={() => handleMakeHR(user)} className="btn btn-sm btn-neutral"><FaUserTie /></button>
+                                        <button onClick={() => handleFire(user)} className="btn btn-sm text-red-700"><FaGripfire /></button>
+                                        <button onClick={() => openSalaryModal(user)} className="btn btn-sm btn-neutral">Adjust Salary</button>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+
+                    {/* Pagination */}
+                    <div className="flex justify-center mt-6 gap-2">
+                        {Array.from({ length: totalPages }, (_, index) => (
+                            <button
+                                key={index}
+                                onClick={() => changePage(index + 1)}
+                                className={`btn ${currentPage === index + 1 ? 'bg-base-300' : 'btn-outline'}`}
+                            >
+                                {index + 1}
+                            </button>
+                        ))}
+                    </div>
+                </>
             )}
 
-            {/* Salary Adjust Modal */}
+            {/* Salary Modal */}
             {showModal && selectedUser && (
                 <div className="modal modal-open">
                     <div className="modal-box">
-                        <h2 className="text-xl font-semibold">Update Salary of {selectedUser.name}</h2>
-                        <p>Email: {selectedUser.email}</p>
-                        <div>
-                            <label htmlFor="salaryInput" className="block mt-2">Update Salary</label>
-                            <input
-                                id="salaryInput"
-                                type="number"
-                                defaultValue={selectedUser.salary || 0}
-                                className="input input-bordered w-full mt-2"
-                                min={selectedUser.salary} 
-                            />
-                        </div>
+                        <h3 className="text-lg font-bold">Adjust Salary for {selectedUser.name}</h3>
+                        <input
+                            id="salaryInput"
+                            type="number"
+                            defaultValue={selectedUser.salary || 0}
+                            className="input input-bordered w-full mt-2"
+                            min={selectedUser.salary}
+                        />
                         <div className="modal-action">
-                            <button onClick={() => setShowModal(false)} className="btn">Close</button>
-                            <button onClick={handleSalaryChange} className="btn btn-neutral">Update</button>
+                            <button onClick={() => setShowModal(false)} className="btn">Cancel</button>
+                            <button onClick={handleSalaryChange} className="btn btn-success">Update</button>
                         </div>
                     </div>
                 </div>

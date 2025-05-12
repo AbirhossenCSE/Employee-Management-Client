@@ -4,8 +4,8 @@ import { FaFacebook, FaTwitter, FaYoutube } from 'react-icons/fa';
 
 const Footer = () => {
     return (
-        <footer>
-            <div className="footer bg-base-300 text-white-content p-10">
+        <footer className='bg-base-300'>
+            <div className="footer max-w-7xl mx-auto text-white-content p-10">
                 <aside className='ml-12'>
                     <img src={logo} className='w-16' alt="" />
                     <p className='text-xl font-bold'>

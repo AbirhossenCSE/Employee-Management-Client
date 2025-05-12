@@ -95,7 +95,7 @@ const CheckoutForm = ({ user }) => {
                         },
                     }}
                 />
-                <button className="btn bg-orange-400 mt-8" type="submit" disabled={!stripe || !clientSecret}>
+                <button className="btn btn-neutral mt-8" type="submit" disabled={!stripe || !clientSecret}>
                     Pay Salary Amount $ {user.salary}
                 </button>
                 {error && <p className="text-red-500 mt-2">{error}</p>}

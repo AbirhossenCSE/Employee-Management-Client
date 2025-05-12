@@ -52,7 +52,7 @@ const AllEmployee = () => {
                 <title> SmartEmployee | All Employees</title>
             </Helmet>
 
-            <div className="max-w-8xl mx-auto px-6 py-12">
+            <div className="max-w-7xl mx-auto px-6 py-12">
                 <h2 className="text-4xl font-extrabold text-center text-gray-500 my-10">
                     Meet Our <span className="text-orange-400">Employees</span>
                 </h2>

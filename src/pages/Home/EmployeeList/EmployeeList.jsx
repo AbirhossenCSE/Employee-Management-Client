@@ -3,11 +3,11 @@ import useUsers from "../../../hooks/useUsers";
 import SectionTitle from "../../../assets/components/SectionTitle/SectionTitle";
 
 const EmployeeList = () => {
-    const [users, isLoading] = useUsers(); // Destructure isLoading from useUsers
+    const [users, isLoading] = useUsers();
     const employees = users.filter((item) => item.role === "Employee");
 
     return (
-        <div className="py-10 bg-base-100 min-h-screen">
+        <div className="py-10 bg-base-100 ">
             <SectionTitle subHeading="Our Employees" heading="Employees" />
 
             {/* Loader */}

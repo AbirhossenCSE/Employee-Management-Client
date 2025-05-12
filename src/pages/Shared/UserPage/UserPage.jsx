@@ -6,7 +6,7 @@ const UserPage = () => {
     const { user } = useAuth();
     const axiosSecure = useAxiosSecure();
     const [userInfo, setUserInfo] = useState(null);
-    const [loading, setLoading] = useState(true); // Added loading state
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchUserData = async () => {
@@ -17,7 +17,7 @@ const UserPage = () => {
             } catch (error) {
                 console.error('Error fetching user details:', error);
             } finally {
-                setLoading(false); // Set loading to false after fetching data
+                setLoading(false);
             }
         };
 

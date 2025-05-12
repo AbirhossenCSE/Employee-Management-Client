@@ -33,7 +33,7 @@ const Dashboard = () => {
             <div className="sm:hidden fixed top-4 left-4 z-50">
                 <button
                     onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                    className="text-orange-500 p-2 rounded-full bg-gray-100 shadow-md"
+                    className="text-gray-800 p-2 rounded-full bg-gray-100 shadow-md"
                 >
                     <FaEllipsisV size={24} />
                 </button>
@@ -41,7 +41,7 @@ const Dashboard = () => {
 
             {/* Dashboard Sidebar */}
             <div
-                className={`fixed sm:relative z-40 bg-orange-400 text-white min-h-screen w-64 transition-transform duration-300 ${
+                className={`fixed sm:relative z-40 bg-gray-800 text-white min-h-screen w-64 transition-transform duration-300 ${
                     isSidebarOpen ? "translate-x-0" : "-translate-x-full"
                 } sm:translate-x-0`}
             >
