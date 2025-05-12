@@ -16,7 +16,6 @@ const WorkSheet = () => {
     const axiosSecure = useAxiosSecure();
     const queryClient = useQueryClient();
 
-    // Fetch tasks for the logged-in user
     const { data: tasks = [], refetch, isLoading } = useQuery({
         queryKey: ["tasks", user?.email],
         queryFn: async () => {
@@ -28,7 +27,6 @@ const WorkSheet = () => {
         enabled: !!user?.email,
     });
 
-    // Add new task
     const addMutation = useMutation({
         mutationFn: async (newTask) => {
             const res = await axiosSecure.post("/tasks", newTask);
@@ -40,7 +38,6 @@ const WorkSheet = () => {
         },
     });
 
-    // Update task
     const updateMutation = useMutation({
         mutationFn: async (updatedTask) => {
             const res = await axiosSecure.put(`/tasks/${updatedTask._id}`, updatedTask);
@@ -53,7 +50,6 @@ const WorkSheet = () => {
         },
     });
 
-    // Delete task
     const deleteMutation = useMutation({
         mutationFn: async (id) => {
             const res = await axiosSecure.delete(`/tasks/${id}`);
@@ -85,80 +81,88 @@ const WorkSheet = () => {
     };
 
     if (isLoading) {
-        return <div className="flex justify-center items-center h-screen">
-            <div className="w-12 h-12 border-4 border-dashed border-orange-400 rounded-full animate-spin"></div>
-        </div>;
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <div className="w-12 h-12 border-4 border-dashed border-orange-400 rounded-full animate-spin"></div>
+            </div>
+        );
     }
 
     return (
-        <div>
-            <h2 className="text-3xl font-bold mb-4">Employee WorkSheet</h2>
+        <div className="p-6 min-h-screen">
+            <h2 className="text-4xl font-bold text-center mb-10">Employee WorkSheet</h2>
+
             {/* Form */}
-            <form className="flex items-center gap-4 mb-6 ">
-                <select
-                    value={task}
-                    onChange={(e) => setTask(e.target.value)}
-                    className="select select-bordered"
-                >
-                    <option value="" disabled>
-                        Select Task
-                    </option>
-                    <option value="Sales">Sales</option>
-                    <option value="Support">Support</option>
-                    <option value="Content">Content</option>
-                    <option value="Paper-work">Paper-work</option>
-                </select>
+            <div className="p-6 rounded-xl shadow-md mb-10 max-w-4xl mx-auto">
+                <h3 className="text-xl font-semibold mb-4">Add New Work</h3>
+                <form className="grid md:grid-cols-4 gap-4">
+                    <select
+                        value={task}
+                        onChange={(e) => setTask(e.target.value)}
+                        className="select select-bordered w-full"
+                    >
+                        <option value="" disabled>Select Task</option>
+                        <option value="Sales">Sales</option>
+                        <option value="Support">Support</option>
+                        <option value="Content">Content</option>
+                        <option value="Paper-work">Paper-work</option>
+                    </select>
 
-                <input
-                    type="number"
-                    value={hoursWorked}
-                    onChange={(e) => setHoursWorked(+e.target.value)}
-                    placeholder="Hours Worked"
-                    className="input input-bordered"
-                />
+                    <input
+                        type="number"
+                        value={hoursWorked}
+                        onChange={(e) => setHoursWorked(+e.target.value)}
+                        placeholder="Hours Worked"
+                        className="input input-bordered w-full"
+                    />
 
-                <ReactDatePicker
-                    selected={date}
-                    onChange={(date) => setDate(date)}
-                    className="input input-bordered"
-                />
+                    <ReactDatePicker
+                        selected={date}
+                        onChange={(date) => setDate(date)}
+                        className="input input-bordered w-full"
+                    />
 
-                <button type="button" onClick={handleAddTask} className="btn btn-neutral">
-                    Add New Work
-                </button>
-            </form>
+                    <button
+                        type="button"
+                        onClick={handleAddTask}
+                        className="btn btn-neutral text-white"
+                    >
+                        Add Task
+                    </button>
+                </form>
+            </div>
 
             {/* Task Table */}
-            <div className="overflow-x-auto">
-                <table className="table table-zebra">
+            <div className="overflow-x-auto max-w-6xl mx-auto shadow rounded-lg">
+                <table className="table table-zebra w-full text-center">
                     <thead>
-                        <tr className="bg-gray-800 text-white">
+                        <tr className="bg-gray-700 text-white text-md">
                             <th>#</th>
                             <th>Task</th>
-                            <th>Hours Worked</th>
+                            <th>Hours</th>
                             <th>Date</th>
                             <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         {tasks.map((task, index) => (
-                            <tr key={task._id}>
-                                <th>{index + 1}</th>
+                            <tr key={task._id} className="hover">
+                                <td>{index + 1}</td>
                                 <td>{task.task}</td>
                                 <td>{task.hoursWorked}</td>
                                 <td>{new Date(task.date).toLocaleDateString()}</td>
-                                <td>
+                                <td className="space-x-2">
                                     <button
-                                        className="btn btn-sm "
+                                        className="btn btn-sm btn-outline btn-info"
                                         onClick={() => setEditData(task)}
                                     >
-                                        🖊
+                                        Edit
                                     </button>
                                     <button
-                                        className="btn btn-sm  ml-2"
+                                        className="btn btn-sm btn-outline btn-error"
                                         onClick={() => deleteMutation.mutate(task._id)}
                                     >
-                                        ❌
+                                        Delete
                                     </button>
                                 </td>
                             </tr>
@@ -169,16 +173,16 @@ const WorkSheet = () => {
 
             {/* Edit Modal */}
             {editData && (
-                <div className="modal modal-open">
+                <div className="modal modal-open bg-black bg-opacity-50">
                     <div className="modal-box">
-                        <h3 className="font-bold text-lg">Edit Task</h3>
-                        <form className="flex flex-col gap-4">
+                        <h3 className="font-bold text-xl mb-4">Edit Task</h3>
+                        <form className="space-y-4">
                             <select
                                 value={editData.task}
                                 onChange={(e) =>
                                     setEditData((prev) => ({ ...prev, task: e.target.value }))
                                 }
-                                className="select select-bordered"
+                                className="select select-bordered w-full"
                             >
                                 <option value="Sales">Sales</option>
                                 <option value="Support">Support</option>
@@ -195,7 +199,7 @@ const WorkSheet = () => {
                                         hoursWorked: +e.target.value,
                                     }))
                                 }
-                                className="input input-bordered"
+                                className="input input-bordered w-full"
                             />
 
                             <ReactDatePicker
@@ -203,15 +207,23 @@ const WorkSheet = () => {
                                 onChange={(date) =>
                                     setEditData((prev) => ({ ...prev, date }))
                                 }
-                                className="input input-bordered"
+                                className="input input-bordered w-full"
                             />
 
-                            <div className="modal-action">
-                                <button type="button" className="btn btn-success" onClick={() => updateMutation.mutate(editData)}>
+                            <div className="flex justify-end gap-3 pt-4">
+                                <button
+                                    type="button"
+                                    className="btn btn-success"
+                                    onClick={() => updateMutation.mutate(editData)}
+                                >
                                     Update
                                 </button>
-                                <button type="button" className="btn btn-error" onClick={() => setEditData(null)}>
-                                    Close
+                                <button
+                                    type="button"
+                                    className="btn btn-outline btn-error"
+                                    onClick={() => setEditData(null)}
+                                >
+                                    Cancel
                                 </button>
                             </div>
                         </form>
