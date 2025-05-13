@@ -39,15 +39,20 @@ const UserPage = () => {
                 </div>
             ) : userInfo ? (
                 <div className='flex items-center gap-4 bg-base-50 p-6 py-4 shadow-lg'>
-                    <div className='w-2/12'>
-                        <img src={userInfo.photo} className='w-full rounded-lg' alt={userInfo.name} />
+                    <div className='w-32 h-32 shrink-0'>
+                        <img src={userInfo.photo} className='w-full h-full object-cover rounded-full border-4 border-gray-600' alt={userInfo.name} />
                     </div>
                     <div className="w-full p-6 py-4 space-y-2 rounded-lg">
                         <p className="text-lg"><strong>Name:</strong> {userInfo.name}</p>
                         <p className="text-lg"><strong>Email:</strong> {userInfo.email}</p>
                         <p className="text-lg"><strong>Your Role:</strong> {userInfo.role}</p>
                         <p className="text-lg"><strong>Designation:</strong> {userInfo.designation}</p>
-                        <p className="text-lg"><strong>Status:</strong> {userInfo.status || 'Active'}</p>
+                        <p className="text-lg">
+                            <strong>Status:</strong>{' '}
+                            <span className={`font-semibold ${userInfo.status === 'Inactive' ? 'text-red-500' : 'text-green-600'}`}>
+                                {userInfo.status || 'Active'}
+                            </span>
+                        </p>
                     </div>
                 </div>
             ) : (
