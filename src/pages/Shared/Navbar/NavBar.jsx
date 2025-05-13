@@ -98,7 +98,7 @@ const NavBar = () => {
             className={`w-full fixed top-0 left-0 z-50 transition-transform duration-300 ${showNavbar ? "translate-y-0" : "-translate-y-full"
                 } bg-opacity-90 shadow-md bg-base-300 dark:bg-gray-900 dark:text-white`}
         >
-            <div className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-12 py-3">
+            <div className="max-w-7xl mx-auto flex items-center justify-between px-6 lg:px-2 py-3">
 
                 {/* Logo */}
                 <Link to="/" className="flex ml-5 items-center gap-2">

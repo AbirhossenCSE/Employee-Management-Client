@@ -45,7 +45,7 @@ const Newsletter = () => {
         <div>
             <div className="max-w-full mx-auto py-16 px-4 bg-base-100 rounded-lg shadow-md text-center">
                 <motion.h2
-                    className="text-center text-3xl font-bold text-gray-500 m-4"
+                    className="text-center text-3xl font-bold m-4"
                     initial={{ opacity: 0, y: -50 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, ease: 'easeInOut' }}
@@ -53,7 +53,7 @@ const Newsletter = () => {
                     Subscribe to Our Newsletter
                 </motion.h2>
 
-                <p className="text-gray-700 mb-8">
+                <p className=" mb-8">
                     Stay updated with the latest news, and upcoming events from Smart Employee Ltd.
                 </p>
                 <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row items-center justify-center gap-4">

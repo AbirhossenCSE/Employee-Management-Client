@@ -42,13 +42,13 @@ const Faq = () => {
                 {faqs.map((faq, index) => (
                     <div key={index} className="faq-item border rounded-lg">
                         <button
-                            className="w-full text-left p-4 font-semibold bg-gray-100 hover:bg-gray-200"
+                            className="w-full text-left p-4 font-semibold hover:bg-base-200"
                             onClick={() => toggleFAQ(index)}
                         >
                             {faq.question}
                         </button>
                         <Collapse isOpened={openIndex === index}>
-                            <div className="p-4 bg-white border-t">{faq.answer}</div>
+                            <div className="p-4 bg-base-300 border-t">{faq.answer}</div>
                         </Collapse>
                     </div>
                 ))}
