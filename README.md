@@ -6,6 +6,19 @@
 ## Overview
 The Employee Management System is a web-based platform designed to help companies manage employee records, monitor workload, process payments, and track workflow updates efficiently. The system features role-based authentication, dashboards for employees and HR executives, data visualization, and integration with payment processing services.
 
+## Login Credentials
+**User:** Employee 1
+**ID:** employee1@gmail.com
+**Password:** Abir@1
+
+**User:** HR 5
+**ID:** hr5@gmail.com
+**Password:** Abir@1
+
+**Admin:** Admin
+**ID:** admin@gmail.com
+**Password:** Abir@1
+
 ## Features
 - **Role-Based Authentication** (Employee, HR, Admin)
 - **Employee Dashboard** for workflow updates and reports
