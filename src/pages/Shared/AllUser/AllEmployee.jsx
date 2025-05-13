@@ -12,7 +12,6 @@ const AllEmployee = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [sortOrder, setSortOrder] = useState('asc');
 
-    // Fetch all users on component mount
     useEffect(() => {
         const fetchUsers = async () => {
             try {
@@ -28,7 +27,6 @@ const AllEmployee = () => {
         fetchUsers();
     }, [axiosPublic]);
 
-    // Handle search by employee name
     useEffect(() => {
         const filtered = users.filter(user =>
             user.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -36,48 +34,47 @@ const AllEmployee = () => {
         setFilteredUsers(filtered);
     }, [searchQuery, users]);
 
-    // Handle sorting by salary
     const handleSort = () => {
-        const sortedUsers = [...filteredUsers].sort((a, b) =>
+        const sorted = [...filteredUsers].sort((a, b) =>
             sortOrder === 'asc' ? a.salary - b.salary : b.salary - a.salary
         );
-        setFilteredUsers(sortedUsers);
+        setFilteredUsers(sorted);
         setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
     };
 
     return (
-        <div className="min-h-screen bg-base-100">
+        <div className="min-h-screen bg-base-100 text-base-content transition-colors duration-300 mt-20">
             <NavBar />
             <Helmet>
-                <title> SmartEmployee | All Employees</title>
+                <title>SmartEmployee | All Employees</title>
             </Helmet>
 
-            <div className="max-w-7xl mx-auto px-6 py-12">
-                <h2 className="text-4xl font-extrabold text-center text-gray-500 my-10">
-                    Meet Our <span className="text-orange-400">Employees</span>
+            <div className="max-w-7xl mx-auto px-2 sm:px-4 lg:px-2 py-12">
+                <h2 className="text-3xl md:text-4xl font-extrabold text-center mb-10">
+                    Meet Our <span className="">Employees</span>
                 </h2>
 
-                {/* Search & Sort Controls */}
-                <div className="flex flex-col sm:flex-row justify-between items-center lg:ml-16 mb-6 space-y-4 sm:space-y-0">
+                {/* Controls */}
+                <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
                     <input
                         type="text"
-                        placeholder="Search employee by name..."
-                        className="px-4 py-2 w-full sm:w-1/3 border border-orange-400 rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-400"
+                        placeholder="Search by employee name..."
+                        className="w-full sm:w-1/2 px-4 py-2 rounded-lg border border-gray-400 bg-base-200 text-base-content focus:ring-2 focus:ring-gray-500 outline-none"
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
                     />
                     <button
                         onClick={handleSort}
-                        className="px-4 py-2 lg:mr-16 bg-orange-500 text-white rounded-lg hover:bg-orange-600 transition "
+                        className="btn btn-neutral text-white px-6 py-2 rounded-lg font-medium"
                     >
-                        Sort by Salary {sortOrder === 'asc' ? '⬆' : '⬇'}
+                        Salary: {sortOrder === 'asc' ? 'Low to High' : 'High to Low'}
                     </button>
                 </div>
 
-                {/* Show Loader while data is loading */}
+                {/* Loading */}
                 {isLoading ? (
-                    <div className="flex justify-center items-center h-screen">
-                        <div className="w-16 h-16 border-4 border-gray-300 border-t-blue-500 rounded-full animate-spin"></div>
+                    <div className="flex justify-center items-center h-40">
+                        <div className="w-14 h-14 border-4 border-dashed border-orange-400 rounded-full animate-spin"></div>
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -85,31 +82,35 @@ const AllEmployee = () => {
                             filteredUsers.map(user => (
                                 <div
                                     key={user._id}
-                                    className="bg-white rounded-2xl shadow-lg overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                                    className="bg-base-200 rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-transform duration-300 transform hover:-translate-y-1"
                                 >
-                                    <div className="bg-gradient-to-r from-orange-200 to-orange-400 h-32 flex justify-center items-center">
+                                    <div className="bg-gradient-to-r from-gray-500 to-gray-700 h-32 flex justify-center items-center">
                                         <img
                                             src={user.photo || 'https://via.placeholder.com/150'}
-                                            alt={`${user.name}'s photo`}
-                                            className="w-24 h-24 border-4 border-white rounded-full shadow-lg"
+                                            alt={user.name}
+                                            className="w-full h-full   shadow-md object-cover"
                                         />
                                     </div>
-                                    <div className="p-6 text-">
-                                        <h3 className="text-2xl font-bold text-gray-800">{user.name}</h3>
-                                        <p className="text-gray-700 font-medium">{user.designation}</p>
-                                        <p className="text-gray-500 text-sm">Email: {user.email}</p>
-                                        <p className="text-gray-600 mt-2 font-semibold">
-                                            Role: <span className="text-gray-700">{user.role.charAt(0).toUpperCase() + user.role.slice(1)}</span>
+
+                                    <div className="p-5">
+                                        <h3 className="text-xl font-bold text-base-content">{user.name}</h3>
+                                        <p className="text-sm text-gray-600 dark:text-gray-300">{user.designation}</p>
+                                        <p className="text-sm mt-1 text-gray-500 dark:text-gray-400">
+                                            Email: <span className="break-words">{user.email}</span>
+                                        </p>
+                                        <p className="mt-2 text-sm text-base-content">
+                                            <strong>Role:</strong> {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
                                         </p>
                                     </div>
-                                    <div className="bg-gray-50 px-6 py-4 text-center">
-                                        <p className="text-gray-700 font-semibold">
-                                            <span className="font-bold text-gray-800">Salary:</span> ${user.salary}
+
+                                    <div className="bg-base-300 px-5 py-4 text-sm text-base-content border-t border-base-100">
+                                        <p>
+                                            <strong>Salary:</strong> ${user.salary}
                                         </p>
-                                        <p className="text-gray-700">
-                                            <span className="font-bold text-gray-800">Bank Account:</span> {user.bank_account_no}
+                                        <p className="mt-1">
+                                            <strong>Bank Account:</strong> {user.bank_account_no}
                                         </p>
-                                        <p className={`mt-2 font-bold ${user.verified ? 'text-green-600' : 'text-red-500'}`}>
+                                        <p className={`mt-2 font-semibold ${user.verified ? 'text-green-500' : 'text-red-500'}`}>
                                             {user.verified ? '✔ Verified' : '✖ Not Verified'}
                                         </p>
                                     </div>

@@ -8,6 +8,7 @@ import Faq from '../FAQ/Faq';
 import KeyMetrics from '../KeyMetrics/KeyMetrics';
 import Newsletter from '../Newsletter/Newsletter';
 import LatestBlogs from '../Blog/LatestBlogs';
+import WhyChooseUs from '../WhyChooseUs/WhyChooseUs';
 
 const Home = () => {
     return (
@@ -16,10 +17,11 @@ const Home = () => {
                 <title> SmartEmployee | Home</title>
             </Helmet>
             <Banner></Banner>
+            <Services></Services>
             <KeyMetrics></KeyMetrics>
             <LatestBlogs></LatestBlogs>
-            <Services></Services>
             <EmployeeList></EmployeeList>
+            <WhyChooseUs></WhyChooseUs>
             <Testimonials></Testimonials> 
             <Faq></Faq> 
             <Newsletter></Newsletter>          

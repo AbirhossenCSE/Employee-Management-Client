@@ -122,7 +122,7 @@ const EmployeeHr = () => {
                             onClick={() => navigate(`details/${employeeId}`)}
                             className="btn btn-neutral"
                         >
-                            Details
+                            Overview
                         </button>
                     );
                 },

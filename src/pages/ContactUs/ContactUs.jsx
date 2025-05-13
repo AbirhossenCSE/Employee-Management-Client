@@ -79,7 +79,7 @@ const ContactUs = () => {
 
                 {/* Contact Form */}
                 <div className="p-8">
-                    <h2 className="text-3xl font-semibold text-orange-400 text-center mb-6">Contact Us</h2>
+                    <h2 className="text-4xl font-bold  text-center mb-6">Contact Us</h2>
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                         <div>
                             <label className="block text-lg font-medium text-gray-500 mb-2" htmlFor="name">
@@ -125,7 +125,7 @@ const ContactUs = () => {
 
                         <button
                             type="submit"
-                            className="w-full py-3 bg-orange-400 text-white font-semibold rounded-md hover:bg-orange-500 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 transition duration-300"
+                            className="w-full btn btn-neutral py-3 text-white font-semibold rounded-md"
                         >
                             Send Message
                         </button>

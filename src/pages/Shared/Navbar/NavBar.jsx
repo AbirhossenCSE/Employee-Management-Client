@@ -62,14 +62,6 @@ const NavBar = () => {
                     About Us
                 </Link>
             </li>
-            <li>
-                <Link
-                    to="/contactUs"
-                    className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/contactUs" ? "text-white bg-orange-400" : "hover:text-orange-400"}`}
-                >
-                    Contact Us
-                </Link>
-            </li>
             {user && (
                 <>
                     <li>
@@ -90,6 +82,14 @@ const NavBar = () => {
                     </li>
                 </>
             )}
+            <li>
+                <Link
+                    to="/contactUs"
+                    className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/contactUs" ? "text-white bg-orange-400" : "hover:text-orange-400"}`}
+                >
+                    Contact Us
+                </Link>
+            </li>
         </>
     );
 
@@ -104,7 +104,7 @@ const NavBar = () => {
                 <Link to="/" className="flex ml-5 items-center gap-2">
                     <img src={logo} alt="Logo" className="w-10 h-10" />
                     <span className="text-2xl font-bold hidden md:flex">
-                        Smart<span className="text-orange-500">Employee</span>
+                        Smart<span className="text-indigo-500">Employee</span>
                     </span>
                 </Link>
 

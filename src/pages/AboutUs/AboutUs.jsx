@@ -23,7 +23,7 @@ const AboutUs = () => {
             </Helmet>
             
             <div className="max-w-6xl mx-auto mt-10 px-6 py-16 text-center">
-                <h2 className="text-5xl font-extrabold text-orange-500 mb-4">About <span className="text-gray-500">Us</span></h2>
+                <h2 className="text-5xl font-extrabold mb-4">About <span className="text-gray-500">Us</span></h2>
                 <p className="text-lg text-gray-500 max-w-3xl mx-auto">
                     Welcome to <strong>SmartEmployee</strong>, your trusted platform for managing employee workflow, salaries, contracts, and updates. We streamline HR processes and boost workplace efficiency.
                 </p>
@@ -46,7 +46,7 @@ const AboutUs = () => {
             <div className="grid md:grid-cols-2 gap-10 max-w-6xl mx-auto px-6 mb-8">
                 {/* Company Details */}
                 <div className="bg-white shadow-md p-8 rounded-lg text-left">
-                    <h3 className="text-3xl font-semibold text-orange-500 mb-6">Company Details</h3>
+                    <h3 className="text-3xl font-bold mb-6">Company Details</h3>
                     <p className="text-gray-700 flex items-center gap-3 mb-4"><FaUsers className="text-orange-500" /> <strong>Company Name:</strong> SmartEmployee</p>
                     <p className="text-gray-700 flex items-center gap-3 mb-4"><FaMapMarkerAlt className="text-orange-500" /> <strong>Address:</strong> Mirpur-1, Dhaka, Bangladesh</p>
                     <p className="text-gray-700 flex items-center gap-3"><FaUsers className="text-orange-500" /> <strong>Total Employees:</strong> {totalEmployees}</p>
@@ -54,7 +54,7 @@ const AboutUs = () => {
                 
                 {/* Live Map */}
                 <div className='bg-white shadow-md p-8 rounded-lg'>
-                    <h3 className="text-3xl font-semibold text-orange-500 mb-6">Find Us Here</h3>
+                    <h3 className="text-3xl font-bold mb-6">Find Us Here</h3>
                     <div className="rounded-lg overflow-hidden shadow-md h-64">
                         <iframe
                             title="Company Location"
