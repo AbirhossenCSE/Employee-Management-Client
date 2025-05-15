@@ -44,11 +44,19 @@ const NavBar = () => {
             .catch(() => console.log('Sign out failed'));
     };
 
+    // Close sidebar on link click
+    const handleLinkClick = () => {
+        if (isMenuOpen) {
+            setIsMenuOpen(false);
+        }
+    };
+
     const navLinks = (
         <>
             <li>
                 <Link
                     to="/"
+                    onClick={handleLinkClick}
                     className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/" ? "text-white bg-indigo-400" : "hover:text-indigo-400"}`}
                 >
                     Home
@@ -57,6 +65,7 @@ const NavBar = () => {
             <li>
                 <Link
                     to="/aboutUs"
+                    onClick={handleLinkClick}
                     className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/aboutUs" ? "text-white bg-indigo-400" : "hover:text-indigo-400"}`}
                 >
                     About Us
@@ -67,6 +76,7 @@ const NavBar = () => {
                     <li>
                         <Link
                             to="/allEmployee"
+                            onClick={handleLinkClick}
                             className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/allEmployee" ? "text-white bg-indigo-400" : "hover:text-indigo-400"}`}
                         >
                             All Employees
@@ -75,6 +85,7 @@ const NavBar = () => {
                     <li>
                         <Link
                             to="/dashboard"
+                            onClick={handleLinkClick}
                             className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/dashboard" ? "text-white bg-indigo-400" : "hover:text-indigo-400"}`}
                         >
                             Dashboard
@@ -85,6 +96,7 @@ const NavBar = () => {
             <li>
                 <Link
                     to="/contactUs"
+                    onClick={handleLinkClick}
                     className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/contactUs" ? "text-white bg-indigo-400" : "hover:text-indigo-400"}`}
                 >
                     Contact Us
