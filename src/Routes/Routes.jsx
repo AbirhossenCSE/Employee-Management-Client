@@ -22,9 +22,9 @@ import AdminHome from "../pages/Dashboard/Admin/AdminHome";
 import HrHome from "../pages/Dashboard/HR/HrHome";
 import EmployeeHome from "../pages/Dashboard/Employee/EmployeeHome";
 import AllEmployee from "../pages/Shared/AllUser/AllEmployee";
-import AdminRevew from "../pages/Dashboard/Employee/AdminRevew";
 import AboutUs from "../pages/AboutUs/AboutUs";
 import Error from "../pages/Error";
+import Overview from "../pages/Dashboard/Admin/Overview";
 
 export const router = createBrowserRouter([
     {
@@ -71,16 +71,16 @@ export const router = createBrowserRouter([
                 element: <AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
             {
-                path: 'adminRev',
-                element: <AdminRoute><AdminRevew></AdminRevew></AdminRoute>
-            },
-            {
                 path: 'payroll',
                 element: <AdminRoute><Payroll></Payroll></AdminRoute>
             },
             {
                 path: 'payment',
                 element: <AdminRoute><Payment></Payment></AdminRoute>,
+            },
+            {
+                path: 'overview',
+                element: <Overview></Overview>
             },
             // Hr
             {

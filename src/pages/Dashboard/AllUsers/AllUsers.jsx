@@ -15,6 +15,18 @@ const AllUsers = () => {
     const [loadingPage, setLoadingPage] = useState(false);
     const itemsPerPage = 6;
 
+    // Force card view on small devices
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 640) {
+                setView('card');
+            }
+        };
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
     const { data: users = [], refetch, isLoading } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
@@ -33,7 +45,7 @@ const AllUsers = () => {
             setCurrentPage(pageNumber);
             setLoadingPage(false);
             window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 500); // Simulate load delay
+        }, 500);
     };
 
     const handleMakeHR = (user) => {
@@ -102,16 +114,17 @@ const AllUsers = () => {
     }
 
     return (
-        <div>
-            <div className="flex justify-between mb-4">
-                <h2 className="text-3xl font-bold">All Employees</h2>
-                <h2 className="text-3xl font-bold">Total: {users.length}</h2>
+        <div className="p-4">
+            <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 mb-4">
+                <h2 className="text-2xl font-bold">All Employees</h2>
+                <h2 className="text-xl font-semibold">Total: {users.length}</h2>
+                {/* Toggle button hidden on small screens */}
                 <button
                     onClick={() => {
                         setView(view === 'table' ? 'card' : 'table');
                         setCurrentPage(1);
                     }}
-                    className="btn btn-neutral text-white"
+                    className="btn btn-neutral text-white hidden sm:inline-flex"
                 >
                     {view === 'table' ? 'Switch to Card View' : 'Switch to Table View'}
                 </button>
@@ -123,9 +136,9 @@ const AllUsers = () => {
                 </div>
             ) : (
                 <>
-                    {view === 'table' ? (
+                    {view === 'table' && window.innerWidth >= 640 ? (
                         <div className="overflow-x-auto">
-                            <table className="table table-zebra">
+                            <table className="table table-zebra w-full">
                                 <thead className="bg-gray-800 text-white">
                                     <tr>
                                         <th>#</th>
@@ -165,11 +178,13 @@ const AllUsers = () => {
                                                         <FaGripfire />
                                                     </button>
                                                 ) : (
-                                                    <span className="text-gray-500">Fired</span>
+                                                    <span className="text-red-500 font-semibold">Fired</span>
                                                 )}
                                             </td>
                                             <td>
-                                                <button onClick={() => openSalaryModal(user)} className="btn btn-sm btn-neutral">Adjust Salary</button>
+                                                <button onClick={() => openSalaryModal(user)} className="btn btn-sm btn-neutral">
+                                                    Adjust Salary
+                                                </button>
                                             </td>
                                         </tr>
                                     ))}
@@ -179,18 +194,32 @@ const AllUsers = () => {
                     ) : (
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                             {paginatedUsers.map((user) => (
-                                <div key={user._id} className="card bg-base-300 p-4 shadow">
-                                    <div className='p-2'> 
-                                        <h3 className="text-2xl font-semibold mb-2 ">{user.name}</h3>
-                                        <p>Email:{user.email}</p>
-                                        <p>Role: {user.role}</p>
-                                        <p>Role: {user.designation}</p>
-                                    </div>
-                                    <div className="flex flex-wrap mt-2 gap-2">
-                                        <button onClick={() => handleMakeAdmin(user)} className="btn btn-sm btn-neutral"><MdAdminPanelSettings /></button>
-                                        <button onClick={() => handleMakeHR(user)} className="btn btn-sm btn-neutral"><FaUserTie /></button>
-                                        <button onClick={() => handleFire(user)} className="btn btn-sm text-red-700"><FaGripfire /></button>
-                                        <button onClick={() => openSalaryModal(user)} className="btn btn-sm btn-neutral">Adjust Salary</button>
+                                <div key={user._id} className="bg-base-200 p-4 rounded-xl shadow-md">
+                                    <h3 className="text-xl font-bold mb-1">{user.name}</h3>
+                                    <p><strong>Email:</strong> {user.email}</p>
+                                    <p><strong>Role:</strong> {user.role}</p>
+                                    {user.designation && <p><strong>Designation:</strong> {user.designation}</p>}
+                                    <div className="flex flex-wrap mt-3 gap-2">
+                                        {user.role !== 'admin' && (
+                                            <button onClick={() => handleMakeAdmin(user)} className="btn btn-sm btn-neutral">
+                                                <MdAdminPanelSettings />
+                                            </button>
+                                        )}
+                                        {user.role === 'Employee' && (
+                                            <button onClick={() => handleMakeHR(user)} className="btn btn-sm btn-neutral">
+                                                <FaUserTie />
+                                            </button>
+                                        )}
+                                        {user.status !== 'fired' ? (
+                                            <button onClick={() => handleFire(user)} className="btn btn-sm text-red-600">
+                                                <FaGripfire />
+                                            </button>
+                                        ) : (
+                                            <span className="text-red-500 font-semibold">Fired</span>
+                                        )}
+                                        <button onClick={() => openSalaryModal(user)} className="btn btn-sm btn-neutral">
+                                            Adjust Salary
+                                        </button>
                                     </div>
                                 </div>
                             ))}
@@ -198,7 +227,7 @@ const AllUsers = () => {
                     )}
 
                     {/* Pagination */}
-                    <div className="flex justify-center mt-6 gap-2">
+                    <div className="flex justify-center mt-6 gap-2 flex-wrap">
                         {Array.from({ length: totalPages }, (_, index) => (
                             <button
                                 key={index}

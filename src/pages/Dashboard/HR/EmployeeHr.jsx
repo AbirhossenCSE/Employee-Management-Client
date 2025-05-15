@@ -14,8 +14,8 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 const EmployeeHr = () => {
     const axiosSecure = useAxiosSecure();
     const queryClient = useQueryClient();
-    const navigate = useNavigate(); 
-    
+    const navigate = useNavigate();
+
     const { data: employees = [], isLoading } = useQuery({
         queryKey: ["employees"],
         queryFn: async () => {
@@ -149,35 +149,36 @@ const EmployeeHr = () => {
     }
 
     return (
-        <div>
-            <h2 className="text-3xl font-bold text-center mb-6">Employee Management</h2>
-            <div className="overflow-x-auto">
-                <table className="table table-zebra w-full">
-                    <thead className="bg-gray-800 text-white">
-                        {table.getHeaderGroups().map((headerGroup) => (
-                            <tr key={headerGroup.id}>
-                                {headerGroup.headers.map((header) => (
-                                    <th key={header.id}>
-                                        {flexRender(header.column.columnDef.header, header.getContext())}
-                                    </th>
-                                ))}
-                            </tr>
-                        ))}
-                    </thead>
-                    <tbody>
-                        {table.getRowModel().rows.map((row) => (
-                            <tr key={row.id}>
-                                {row.getVisibleCells().map((cell) => (
-                                    <td key={cell.id}>
-                                        {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                    </td>
-                                ))}
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
-            {/* Pagination */}
+    <div className="px-4 py-6">
+        <h2 className="text-3xl font-bold text-center mb-6">Employee Management</h2>
+
+        {/* Table View (for md and larger screens) */}
+        <div className="overflow-x-auto hidden md:block">
+            <table className="table table-zebra w-full">
+                <thead className="bg-gray-800 text-white">
+                    {table.getHeaderGroups().map((headerGroup) => (
+                        <tr key={headerGroup.id}>
+                            {headerGroup.headers.map((header) => (
+                                <th key={header.id}>
+                                    {flexRender(header.column.columnDef.header, header.getContext())}
+                                </th>
+                            ))}
+                        </tr>
+                    ))}
+                </thead>
+                <tbody>
+                    {table.getRowModel().rows.map((row) => (
+                        <tr key={row.id}>
+                            {row.getVisibleCells().map((cell) => (
+                                <td key={cell.id}>
+                                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                                </td>
+                            ))}
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
+            {/* Pagination (for table view) */}
             <div className="mt-4 flex justify-end">
                 <button
                     onClick={() => table.previousPage()}
@@ -198,7 +199,48 @@ const EmployeeHr = () => {
                 </button>
             </div>
         </div>
-    );
+
+        {/* Card View (for small screens) */}
+        <div className="grid gap-4 md:hidden">
+            {employees.map((emp) => (
+                <div key={emp._id} className="bg-base-200 rounded-lg shadow p-4">
+                    <h3 className="text-xl font-semibold">{emp.name}</h3>
+                    <p className="text-sm">Email: {emp.email}</p>
+                    <p className="text-sm">Bank: {emp.bank_account_no || "N/A"}</p>
+                    <p className="text-sm">Salary: ${emp.salary}</p>
+                    <p className="text-sm">
+                        Verified:{" "}
+                        <span className={emp.verified ? "text-green-500" : "text-red-500"}>
+                            {emp.verified ? "Yes" : "No"}
+                        </span>
+                    </p>
+                    <div className="flex gap-2 mt-3">
+                        <button
+                            onClick={() => handleToggleVerified(emp._id)}
+                            className={`btn btn-sm ${emp.verified ? "btn-success" : "btn-error"}`}
+                        >
+                            {emp.verified ? <FaCheck /> : <FaTimes />}
+                        </button>
+                        <button
+                            onClick={() => handleAddPayable(emp._id)}
+                            className="btn btn-sm btn-neutral"
+                        >
+                            Pay
+                        </button>
+                        <button
+                            onClick={() => handleViewDetails(emp._id)}
+                            className="btn btn-sm btn-primary"
+                        >
+                            Overview
+                        </button>
+                    </div>
+                </div>
+            ))}
+        </div>
+    </div>
+);
+
 };
 
 export default EmployeeHr;
+

@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { FaHome, FaUsers, FaEnvelope, FaMoneyBill, FaEllipsisV } from "react-icons/fa";
+import {
+    FaHome,
+    FaUsers,
+    FaEnvelope,
+    FaMoneyBill,
+    FaEllipsisV,
+} from "react-icons/fa";
 import { NavLink, Outlet, useLocation, useNavigate } from "react-router-dom";
 import useRole from "../hooks/useRole";
 import useAuth from "../hooks/useAuth";
@@ -10,7 +16,7 @@ const Dashboard = () => {
     const { user } = useAuth();
     const navigate = useNavigate();
     const location = useLocation();
-    const [isSidebarOpen, setIsSidebarOpen] = useState(false); 
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
     useEffect(() => {
         if (location.pathname === "/dashboard") {
@@ -24,12 +30,38 @@ const Dashboard = () => {
         }
     }, [role, navigate, location.pathname]);
 
+    // Custom NavLink that closes the sidebar on small screens
+    const SidebarLink = ({ to, icon: Icon, children }) => {
+        const handleClick = () => {
+            if (window.innerWidth < 640) {
+                setIsSidebarOpen(false);
+            }
+        };
+
+        return (
+            <li>
+                <NavLink
+                    to={to}
+                    onClick={handleClick}
+                    className={({ isActive }) =>
+                        `flex items-center gap-2 px-2 py-1 rounded ${
+                            isActive ? "bg-indigo-400 text-white font-bold" : "hover:bg-gray-700"
+                        }`
+                    }
+                >
+                    {Icon && <Icon />} {children}
+                </NavLink>
+            </li>
+        );
+    };
+
     return (
         <div className="flex">
             <Helmet>
                 <title>SmartEmployee | Dashboard</title>
             </Helmet>
-            {/* for Small Devices */}
+
+            {/* Sidebar Toggle for Small Devices */}
             <div className="sm:hidden fixed top-4 left-4 z-50">
                 <button
                     onClick={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -39,100 +71,74 @@ const Dashboard = () => {
                 </button>
             </div>
 
-            {/* Dashboard Sidebar */}
+            {/* Sidebar */}
             <div
                 className={`fixed sm:relative z-40 bg-gray-800 text-white min-h-screen w-64 transition-transform duration-300 ${
                     isSidebarOpen ? "translate-x-0" : "-translate-x-full"
                 } sm:translate-x-0`}
             >
-                <ul className="menu p-4">
-                    {/* Role-specific navigation */}
+                <ul className="menu p-4 space-y-1">
                     {role === "admin" && (
                         <>
-                            <li>
-                                <NavLink to="/dashboard/adminHome">
-                                    <FaHome /> Admin Home
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/all-employee-list">
-                                    <FaUsers /> All Users
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/payroll">
-                                    <FaMoneyBill /> Payroll
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/adminRev">
-                                    <FaMoneyBill /> Review
-                                </NavLink>
-                            </li>
+                            <SidebarLink to="/dashboard/adminHome" icon={FaHome}>
+                                Admin Home
+                            </SidebarLink>
+                            <SidebarLink to="/dashboard/all-employee-list" icon={FaUsers}>
+                                All Users
+                            </SidebarLink>
+                            <SidebarLink to="/dashboard/payroll" icon={FaMoneyBill}>
+                                Payroll
+                            </SidebarLink>
+                            <SidebarLink to="/dashboard/overview" icon={FaMoneyBill}>
+                                Overview
+                            </SidebarLink>
                         </>
                     )}
 
                     {role === "HR" && (
                         <>
-                            <li>
-                                <NavLink to="/dashboard/hrHome">
-                                    <FaHome /> HR Home
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/employee-list">
-                                    <FaUsers /> All Employees
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/progress">
-                                    <FaUsers /> Progress
-                                </NavLink>
-                            </li>
+                            <SidebarLink to="/dashboard/hrHome" icon={FaHome}>
+                                HR Home
+                            </SidebarLink>
+                            <SidebarLink to="/dashboard/employee-list" icon={FaUsers}>
+                                All Employees
+                            </SidebarLink>
+                            <SidebarLink to="/dashboard/progress" icon={FaUsers}>
+                                Progress
+                            </SidebarLink>
                         </>
                     )}
 
                     {role === "Employee" && (
                         <>
-                            <li>
-                                <NavLink to="/dashboard/employeeHome">
-                                    <FaHome /> Employee Home
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/work-sheet">
-                                    <FaUsers /> Work-Sheet
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink to="/dashboard/payment-history">
-                                    <FaUsers /> Payment History
-                                </NavLink>
-                            </li>
+                            <SidebarLink to="/dashboard/employeeHome" icon={FaHome}>
+                                Employee Home
+                            </SidebarLink>
+                            <SidebarLink to="/dashboard/work-sheet" icon={FaUsers}>
+                                Work-Sheet
+                            </SidebarLink>
+                            <SidebarLink to="/dashboard/payment-history" icon={FaUsers}>
+                                Payment History
+                            </SidebarLink>
                         </>
                     )}
 
-                    {/* Shared NavLinks */}
                     <div className="divider"></div>
-                    <li>
-                        <NavLink to="/">
-                            <FaHome /> Home
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/contactUs">
-                            <FaEnvelope /> Contact Us
-                        </NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/allEmployee">
-                            <FaUsers /> All Employee
-                        </NavLink>
-                    </li>
+
+                    {/* Shared Links */}
+                    <SidebarLink to="/" icon={FaHome}>
+                        Home
+                    </SidebarLink>
+                    <SidebarLink to="/contactUs" icon={FaEnvelope}>
+                        Contact Us
+                    </SidebarLink>
+                    <SidebarLink to="/allEmployee" icon={FaUsers}>
+                        All Employee
+                    </SidebarLink>
                 </ul>
             </div>
 
-            {/* Overlay to close sidebar on small devices */}
+            {/* Sidebar Overlay for Small Devices */}
             {isSidebarOpen && (
                 <div
                     onClick={() => setIsSidebarOpen(false)}
@@ -140,7 +146,7 @@ const Dashboard = () => {
                 ></div>
             )}
 
-            {/* Dashboard Content */}
+            {/* Main Dashboard Content */}
             <div className="flex-1 p-4">
                 <Outlet />
             </div>

@@ -49,7 +49,7 @@ const NavBar = () => {
             <li>
                 <Link
                     to="/"
-                    className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/" ? "text-white bg-orange-400" : "hover:text-orange-400"}`}
+                    className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/" ? "text-white bg-indigo-400" : "hover:text-indigo-400"}`}
                 >
                     Home
                 </Link>
@@ -57,7 +57,7 @@ const NavBar = () => {
             <li>
                 <Link
                     to="/aboutUs"
-                    className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/aboutUs" ? "text-white bg-orange-400" : "hover:text-orange-400"}`}
+                    className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/aboutUs" ? "text-white bg-indigo-400" : "hover:text-indigo-400"}`}
                 >
                     About Us
                 </Link>
@@ -67,7 +67,7 @@ const NavBar = () => {
                     <li>
                         <Link
                             to="/allEmployee"
-                            className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/allEmployee" ? "text-white bg-orange-400" : "hover:text-orange-400"}`}
+                            className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/allEmployee" ? "text-white bg-indigo-400" : "hover:text-indigo-400"}`}
                         >
                             All Employees
                         </Link>
@@ -75,7 +75,7 @@ const NavBar = () => {
                     <li>
                         <Link
                             to="/dashboard"
-                            className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/dashboard" ? "text-white bg-orange-400" : "hover:text-orange-400"}`}
+                            className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/dashboard" ? "text-white bg-indigo-400" : "hover:text-indigo-400"}`}
                         >
                             Dashboard
                         </Link>
@@ -85,7 +85,7 @@ const NavBar = () => {
             <li>
                 <Link
                     to="/contactUs"
-                    className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/contactUs" ? "text-white bg-orange-400" : "hover:text-orange-400"}`}
+                    className={`px-3 py-1 rounded-md transition duration-200 ${location.pathname === "/contactUs" ? "text-white bg-indigo-400" : "hover:text-indigo-400"}`}
                 >
                     Contact Us
                 </Link>

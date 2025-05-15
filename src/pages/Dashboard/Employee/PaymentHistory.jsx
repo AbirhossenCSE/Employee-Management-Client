@@ -53,7 +53,7 @@ const PaymentHistory = () => {
                                     <th className="border px-4 py-2">Month</th>
                                     <th className="border px-4 py-2">Year</th>
                                     <th className="border px-4 py-2">Amount</th>
-                                    <th className="border px-4 py-2">Transaction ID</th>
+                                    <th className="border px-4 py-2 hidden md:flex">Transaction ID</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,7 +63,7 @@ const PaymentHistory = () => {
                                             <td className="border text-center px-4 py-2">{payment.month}</td>
                                             <td className="border text-center px-4 py-2">{payment.year}</td>
                                             <td className="border text-center px-4 py-2">${payment.paidAmount}</td>
-                                            <td className="border text-center px-4 py-2">{payment.transactionId}</td>
+                                            <td className="border text-center px-4 py-2 hidden md:flex">{payment.transactionId}</td>
                                         </tr>
                                     ))
                                 ) : (

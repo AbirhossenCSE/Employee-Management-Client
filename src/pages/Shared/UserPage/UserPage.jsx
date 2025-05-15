@@ -27,27 +27,30 @@ const UserPage = () => {
     }, [user, axiosSecure]);
 
     return (
-        <div className="p-6">
-            <h1 className="text-4xl text-center font-bold mb-4">
-                Welcome Back, <span className='text-red-500'>{user?.displayName || 'User'}!</span>
+        <div className="p-4 sm:p-6 max-w-5xl mx-auto">
+            <h1 className="text-3xl sm:text-4xl text-center font-bold mb-6">
+                Welcome Back, <span className="text-red-500">{user?.displayName || 'User'}!</span>
             </h1>
 
             {loading ? (
-                // Loader Section
                 <div className="flex justify-center items-center h-40">
-                    <div className="w-12 h-12 border-4 border-orange-400 border-dashed rounded-full animate-spin"></div>
+                    <div className="w-10 h-10 border-4 border-orange-400 border-dashed rounded-full animate-spin"></div>
                 </div>
             ) : userInfo ? (
-                <div className='flex items-center gap-4 bg-base-50 p-6 py-4 shadow-lg'>
-                    <div className='w-32 h-32 shrink-0'>
-                        <img src={userInfo.photo} className='w-full h-full object-cover rounded-full border-4 border-gray-600' alt={userInfo.name} />
+                <div className="flex flex-col md:flex-row items-center gap-6 bg-base-100 p-4 sm:p-6 rounded-lg shadow-md">
+                    <div className="w-32 h-32 shrink-0">
+                        <img
+                            src={userInfo.photo}
+                            className="w-full h-full object-cover rounded-full border-4 border-gray-600"
+                            alt={userInfo.name}
+                        />
                     </div>
-                    <div className="w-full p-6 py-4 space-y-2 rounded-lg">
-                        <p className="text-lg"><strong>Name:</strong> {userInfo.name}</p>
-                        <p className="text-lg"><strong>Email:</strong> {userInfo.email}</p>
-                        <p className="text-lg"><strong>Your Role:</strong> {userInfo.role}</p>
-                        <p className="text-lg"><strong>Designation:</strong> {userInfo.designation}</p>
-                        <p className="text-lg">
+                    <div className="flex-1 space-y-2 text-sm sm:text-base md:text-lg">
+                        <p><strong>Name:</strong> {userInfo.name}</p>
+                        <p><strong>Email:</strong> {userInfo.email}</p>
+                        <p><strong>Your Role:</strong> {userInfo.role}</p>
+                        <p><strong>Designation:</strong> {userInfo.designation}</p>
+                        <p>
                             <strong>Status:</strong>{' '}
                             <span className={`font-semibold ${userInfo.status === 'Inactive' ? 'text-red-500' : 'text-green-600'}`}>
                                 {userInfo.status || 'Active'}

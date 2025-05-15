@@ -82,7 +82,7 @@ const ContactUs = () => {
                     <h2 className="text-4xl font-bold  text-center mb-6">Contact Us</h2>
                     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                         <div>
-                            <label className="block text-lg font-medium text-gray-500 mb-2" htmlFor="name">
+                            <label className="block text-lg font-medium mb-2" htmlFor="name">
                                 Name
                             </label>
                             <input
@@ -96,7 +96,7 @@ const ContactUs = () => {
                         </div>
 
                         <div>
-                            <label className="block text-lg font-medium text-gray-500 mb-2" htmlFor="email">
+                            <label className="block text-lg font-medium mb-2" htmlFor="email">
                                 Email Address
                             </label>
                             <input
@@ -110,7 +110,7 @@ const ContactUs = () => {
                         </div>
 
                         <div>
-                            <label className="block text-lg font-medium text-gray-500 mb-2" htmlFor="message">
+                            <label className="block text-lg font-medium mb-2" htmlFor="message">
                                 Your Message
                             </label>
                             <textarea

@@ -52,7 +52,7 @@ const Progress = () => {
     return (
         <div>
             <h2 className="text-3xl text-center font-bold mb-6">All Employee Works</h2>
-            <div className="flex items-center gap-4 mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
                 <select
                     value={selectedEmployee}
                     onChange={(e) => setSelectedEmployee(e.target.value)}
@@ -74,7 +74,8 @@ const Progress = () => {
                 />
             </div>
 
-            <div className="overflow-x-auto">
+            {/* Table for large screens */}
+            <div className="overflow-x-auto hidden lg:block">
                 <table className="table table-zebra w-full">
                     <thead>
                         <tr className="bg-gray-700 text-white">
@@ -106,6 +107,39 @@ const Progress = () => {
                     </tbody>
                 </table>
             </div>
+
+            {/* Card format for small and medium screens */}
+            <div className="lg:hidden grid grid-cols-1 sm:grid-cols-2 px-4">
+                {filteredRecords.length > 0 ? (
+                    filteredRecords.map((record, index) => (
+                        <div
+                            key={record._id}
+                            className="bg-base-200 rounded-xl shadow-md p-4 border border-gray-200 w-full"
+                        >
+                            <p className="text-sm">
+                                <span className="font-semibold ">Employee: </span>{" "}
+                                {record.email}
+                            </p>
+                            <p className="text-sm">
+                                <span className="font-semibold">Task:</span>{" "}
+                                {record.task}
+                            </p>
+                            <p className="text-sm">
+                                <span className="font-semibold">Hours Worked:</span>{" "}
+                                {record.hoursWorked}
+                            </p>
+                            <p className="text-sm">
+                                <span className="font-semibold">Date:</span>{" "}
+                                {new Date(record.date).toLocaleDateString()}
+                            </p>
+                        </div>
+                    ))
+                ) : (
+                    <p className="text-center col-span-full text-gray-500">No records found.</p>
+                )}
+            </div>
+
+
         </div>
     );
 };

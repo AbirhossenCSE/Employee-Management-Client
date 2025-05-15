@@ -23,8 +23,8 @@ const AboutUs = () => {
             </Helmet>
             
             <div className="max-w-6xl mx-auto mt-10 px-6 py-16 text-center">
-                <h2 className="text-5xl font-extrabold mb-4">About <span className="text-gray-500">Us</span></h2>
-                <p className="text-lg text-gray-500 max-w-3xl mx-auto">
+                <h2 className="text-5xl font-extrabold mb-4">About Us</h2>
+                <p className="text-lg max-w-3xl mx-auto">
                     Welcome to <strong>SmartEmployee</strong>, your trusted platform for managing employee workflow, salaries, contracts, and updates. We streamline HR processes and boost workplace efficiency.
                 </p>
             </div>

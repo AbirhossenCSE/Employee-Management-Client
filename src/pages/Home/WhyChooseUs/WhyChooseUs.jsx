@@ -37,7 +37,7 @@ const WhyChooseUs = () => {
                 <SectionTitle heading="Why Choose Us" subHeading="Discover how our Employee Management System makes your workforce smarter and more efficient."></SectionTitle>
                 <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
                     {benefits.map((item, idx) => (
-                        <div key={idx} className="bg-base-300 rounded-2xl shadow-md p-6 hover:shadow-lg transition duration-300">
+                        <div key={idx} className="bg-base-200 rounded-2xl shadow-md p-6 hover:shadow-lg transition duration-300">
                             <div className="mb-4">{item.icon}</div>
                             <h3 className="text-xl font-semibold mb-2">{item.title}</h3>
                             <p className=" ">{item.description}</p>

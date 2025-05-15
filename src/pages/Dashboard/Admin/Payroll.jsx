@@ -38,8 +38,8 @@ const Payroll = () => {
                                 <tr>
                                     <th>Name</th>
                                     <th>Salary</th>
-                                    <th>Month & Year</th>
-                                    <th>Payment Date</th>
+                                    <th className="hidden md:flex">Month & Year</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -48,7 +48,7 @@ const Payroll = () => {
                                     <tr key={user._id} className="hover:bg-base-200 transition-all">
                                         <td className="font-semibold">{user.name}</td>
                                         <td className="text-green-600 font-medium">${user.salary}</td>
-                                        <td>
+                                        <td className="hidden md:flex">
                                             {new Date().toLocaleString("default", {
                                                 month: "long",
                                                 year: "numeric",

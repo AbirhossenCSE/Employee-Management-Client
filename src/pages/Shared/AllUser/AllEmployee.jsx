@@ -94,8 +94,8 @@ const AllEmployee = () => {
 
                                     <div className="p-5">
                                         <h3 className="text-xl font-bold text-base-content">{user.name}</h3>
-                                        <p className="text-sm text-gray-600 dark:text-gray-300">{user.designation}</p>
-                                        <p className="text-sm mt-1 text-gray-500 dark:text-gray-400">
+                                        <p className="text-sm">{user.designation}</p>
+                                        <p className="text-sm mt-1">
                                             Email: <span className="break-words">{user.email}</span>
                                         </p>
                                         <p className="mt-2 text-sm text-base-content">

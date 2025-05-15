@@ -136,8 +136,8 @@ const WorkSheet = () => {
             <div className="overflow-x-auto max-w-6xl mx-auto shadow rounded-lg">
                 <table className="table table-zebra w-full text-center">
                     <thead>
-                        <tr className="bg-gray-700 text-white text-md">
-                            <th>#</th>
+                        <tr className="text-base-200 text-md">
+                            <th className="hidden md:flex">#</th>
                             <th>Task</th>
                             <th>Hours</th>
                             <th>Date</th>
@@ -147,7 +147,7 @@ const WorkSheet = () => {
                     <tbody>
                         {tasks.map((task, index) => (
                             <tr key={task._id} className="hover">
-                                <td>{index + 1}</td>
+                                <td className="hidden md:flex">{index + 1}</td>
                                 <td>{task.task}</td>
                                 <td>{task.hoursWorked}</td>
                                 <td>{new Date(task.date).toLocaleDateString()}</td>
