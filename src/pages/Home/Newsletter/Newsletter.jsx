@@ -65,7 +65,7 @@ const Newsletter = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
-                    <button type="submit" className="btn btn-primary" disabled={loading}>
+                    <button type="submit" className="btn btn-neutral" disabled={loading}>
                         {loading ? 'Subscribing...' : 'Subscribe Now'}
                     </button>
                 </form>

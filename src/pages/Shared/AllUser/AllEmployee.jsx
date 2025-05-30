@@ -74,7 +74,7 @@ const AllEmployee = () => {
                 {/* Loading */}
                 {isLoading ? (
                     <div className="flex justify-center items-center h-40">
-                        <div className="w-14 h-14 border-4 border-dashed border-orange-400 rounded-full animate-spin"></div>
+                        <div className="w-14 h-14 border-4 border-dashed border-indigo-500 rounded-full animate-spin"></div>
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -93,7 +93,7 @@ const AllEmployee = () => {
                                     </div>
 
                                     <div className="p-5">
-                                        <h3 className="text-xl font-bold text-base-content">{user.name}</h3>
+                                        <h3 className="text-xl font-bold text-indigo-500">{user.name}</h3>
                                         <p className="text-sm">{user.designation}</p>
                                         <p className="text-sm mt-1">
                                             Email: <span className="break-words">{user.email}</span>

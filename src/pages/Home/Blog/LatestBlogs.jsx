@@ -30,17 +30,17 @@ const LatestBlogs = () => {
 
                 {loading ? (
                     <div className="flex justify-center items-center h-32">
-                        <div className="w-12 h-12 border-4 border-gray-300 border-t-orange-400 rounded-full animate-spin"></div>
+                        <div className="w-12 h-12 border-4 border-gray-300 border-t-indigo-500 rounded-full animate-spin"></div>
                     </div>
                 ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 mt-10">
                         {blogs.map(blog => (
-                            <div key={blog.id} className="bg-white shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl">
+                            <div key={blog.id} className="bg-base-200 shadow-lg rounded-lg overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-2xl">
                                 <img src={blog.image} alt={blog.title} className="w-full h-56 object-cover" />
                                 <div className="p-6">
-                                    <h3 className="text-2xl font-semibold text-gray-800">{blog.title}</h3>
-                                    <p className="text-gray-500 text-sm mt-1">{blog.date}</p>
-                                    <p className="text-gray-600 mt-3 line-clamp-3">{blog.excerpt}</p>
+                                    <h3 className="text-2xl font-semibold ">{blog.title}</h3>
+                                    <p className="text-sm mt-1">{blog.date}</p>
+                                    <p className="mt-3 line-clamp-3">{blog.excerpt}</p>
 
                                 </div>
                             </div>

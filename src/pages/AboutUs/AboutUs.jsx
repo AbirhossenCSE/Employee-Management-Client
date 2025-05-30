@@ -47,9 +47,9 @@ const AboutUs = () => {
                 {/* Company Details */}
                 <div className="bg-base-200 shadow-md p-8 rounded-lg text-left">
                     <h3 className="text-3xl font-bold mb-6">Company Details</h3>
-                    <p className=" flex items-center gap-3 mb-4"><FaUsers className="text-orange-500" /> <strong>Company Name:</strong> SmartEmployee</p>
-                    <p className=" flex items-center gap-3 mb-4"><FaMapMarkerAlt className="text-orange-500" /> <strong>Address:</strong> Mirpur-1, Dhaka, Bangladesh</p>
-                    <p className="flex items-center gap-3"><FaUsers className="text-orange-500" /> <strong>Total Employees:</strong> {totalEmployees}</p>
+                    <p className=" flex items-center gap-3 mb-4"><FaUsers className="text-indigo-500" /> <strong>Company Name:</strong> SmartEmployee</p>
+                    <p className=" flex items-center gap-3 mb-4"><FaMapMarkerAlt className="text-indigo-500" /> <strong>Address:</strong> Mirpur-1, Dhaka, Bangladesh</p>
+                    <p className="flex items-center gap-3"><FaUsers className="text-indigo-500" /> <strong>Total Employees:</strong> {totalEmployees}</p>
                 </div>
                 
                 {/* Live Map */}

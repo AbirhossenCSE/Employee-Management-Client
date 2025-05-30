@@ -29,12 +29,12 @@ const UserPage = () => {
     return (
         <div className="p-4 sm:p-6 max-w-5xl mx-auto">
             <h1 className="text-3xl sm:text-4xl text-center font-bold mb-6">
-                Welcome Back, <span className="text-red-500">{user?.displayName || 'User'}!</span>
+                Welcome Back, <span className="text-indigo-500">{user?.displayName || 'User'}!</span>
             </h1>
 
             {loading ? (
                 <div className="flex justify-center items-center h-40">
-                    <div className="w-10 h-10 border-4 border-orange-400 border-dashed rounded-full animate-spin"></div>
+                    <div className="w-10 h-10 border-4 border-indigo-500 border-dashed rounded-full animate-spin"></div>
                 </div>
             ) : userInfo ? (
                 <div className="flex flex-col md:flex-row items-center gap-6 bg-base-100 p-4 sm:p-6 rounded-lg shadow-md">

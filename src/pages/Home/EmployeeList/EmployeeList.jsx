@@ -7,50 +7,52 @@ const EmployeeList = () => {
     const employees = users.filter((item) => item.role === "Employee");
 
     return (
-        <div className="py-10 bg-base-100 ">
+        <div className="py-10 bg-base-100">
             <SectionTitle subHeading="Our Employees" heading="Employees" />
 
             {/* Loader */}
             {isLoading ? (
                 <div className="flex justify-center items-center h-40">
-                    <div className="w-12 h-12 border-4 border-dashed border-orange-400 rounded-full animate-spin"></div>
+                    <div className="w-12 h-12 border-4 border-dashed border-indigo-500 rounded-full animate-spin"></div>
                 </div>
             ) : (
-                <div className="max-w-7xl mx-auto flex justify-center">
+                <div className="max-w-7xl mx-auto px-4">
                     {employees.length > 0 ? (
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full px-4">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                             {employees.map((employee) => (
                                 <div
                                     key={employee._id}
-                                    className="bg-white shadow-lg rounded-2xl overflow-hidden transform transition-all duration-300 hover:scale-105 hover:shadow-2xl"
+                                    className="bg-base-200 shadow-md rounded-xl overflow-hidden transition-transform duration-300 hover:shadow-xl hover:-translate-y-1"
                                 >
                                     <img
-                                        className="w-full h-56 object-cover"
+                                        className="w-full h-52 object-cover"
                                         src={employee.photo}
                                         alt={employee.name}
                                     />
-                                    <div className="p-6">
-                                        <h5 className="text-2xl font-semibold text-gray-800 mb-3">
+                                    <div className="p-5 space-y-2">
+                                        <h3 className="text-xl font-bold text-indigo-500">
                                             {employee.name}
-                                        </h5>
-                                        <p className="text-gray-600 text-lg">
-                                            <strong>Designation:</strong> {employee.designation}
+                                        </h3>
+                                        <p className="text-sm">
+                                            <span className="font-medium ">
+                                                Designation:
+                                            </span>{" "}
+                                            {employee.designation}
                                         </p>
-                                        <p className="text-gray-600">
-                                            <strong>Email:</strong> {employee.email}
-                                        </p>
-                                        <p className="text-gray-600">
-                                            <strong>Salary:</strong> ${employee.salary}
-                                        </p>
-                                        <p className="text-gray-600">
-                                            <strong>Bank Account:</strong> {employee.bank_account_no}
+                                        <p className="text-sm ">
+                                            <span className="font-medium ">
+                                                Email:
+                                            </span>{" "}
+                                            {employee.email}
                                         </p>
                                     </div>
                                 </div>
                             ))}
                         </div>
                     ) : (
-                        <p className="text-center text-gray-600 text-xl mt-6">No employees found.</p>
+                        <p className="text-center text-gray-600 text-xl mt-6">
+                            No employees found.
+                        </p>
                     )}
                 </div>
             )}

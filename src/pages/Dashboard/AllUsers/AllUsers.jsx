@@ -108,7 +108,7 @@ const AllUsers = () => {
     if (isLoading) {
         return (
             <div className="flex justify-center items-center h-64">
-                <ClipLoader size={50} color="#f97316" />
+                <ClipLoader size={50} color="#667eea" />
             </div>
         );
     }

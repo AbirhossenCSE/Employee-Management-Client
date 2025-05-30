@@ -48,7 +48,7 @@ const Overview = () => {
                         <YAxis label={{ value: 'Hours Worked', angle: -90, position: 'insideLeft' }} />
                         <Tooltip />
                         <Legend />
-                        <Bar dataKey="hoursWorked" fill="#FFA506" />
+                        <Bar dataKey="hoursWorked" fill="#667eea" />
                     </BarChart>
                 </ResponsiveContainer>
             </div>
